@@ -1,3 +1,0 @@
-# ZedMoster.github.io
-
-# blog
