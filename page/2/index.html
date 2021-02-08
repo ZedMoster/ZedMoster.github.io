@@ -506,9 +506,6 @@
         
           样板代码正如在样板代码一章中所见，Revit 样板代码通常需要设置 Revit 应用程序和文档 doc，uidoc，app，uiapp的句柄。
 但是为什么呢？
-Application and Document一开始，API 的这一部分似乎有些混乱。问题比比皆是：Revit 不能仅算出我所处的文档（即模型）吗？为什么我有一个 Document 和一个 UIDocument？为什么要引用应用程序-应用程序不是 Revit 吗？ 这些是很好的问题。幸运的是，Revit 的 API 指南为我们提供了一些答案：
-
-Revit Platform API 中的顶级对象是应用程序和文档。这些由类 App...
         
       </div>
       
@@ -557,9 +554,6 @@ Revit Platform API 中的顶级对象是应用程序和文档。这些由类 App
       <div class="index-article-content">
         
           About Unwrapping展开元素？现在有一些奇怪的术语！简而言之：引入节点的 Revit 元素在使用前需要先’unwrapped’。 但是为了了解所有含义，我们需要对 Dynamo 的最初开发方式有一点了解。
-
-回顾历史 🏰Dynamo 最初被认为是 Ian Keough 的开源爱好项目。Dynamo 最初仅用于与 Revit 集成，但它还需要 Revit API 本身不提供的扩展功能，例如可视化抽象几何。
-围绕此问题的方法是，Ian 的新应用程序使用其自己的等效类型实质上封装 Revit API 中的大约 1700 个类-这些类型的功能可以根据 Dynamo 的要求进行构建。...
         
       </div>
       
@@ -609,11 +603,6 @@ Revit Platform API 中的顶级对象是应用程序和文档。这些由类 App
         
           使用 APIDocs.Co由于该网站对于希望熟悉 Revit API 的人来说是非常宝贵的资源，因此我们提供了使用该网站的简要指南。
 
-
-典型的工作流程将涉及确保已为要使用的产品选择合适版本的 API（在左窗格中），然后在 API 文档中搜索您关注的相关主题。例如，如果要了解有关 FamilyInstance 类的更多信息，只需在搜索栏中搜索它，然后从自动完成选项中选择它即可。然后，有关此类的详细信息将显示在右侧的详细信息窗格中：
-
-这是您正在查看的页面的名称。Revit API 有超过 22,000 页，但其中的大部分都是不经常使用的！
-这个 &lt;&gt; 按钮将在几个流行的 Gi...
         
       </div>
       

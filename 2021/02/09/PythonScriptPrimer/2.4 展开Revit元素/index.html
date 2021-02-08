@@ -39,6 +39,20 @@
     
     
     
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    
     
     <title>
         
@@ -224,6 +238,8 @@
     
     <div class="post-content typo">
         <h2 id="About-Unwrapping"><a href="#About-Unwrapping" class="headerlink" title="About Unwrapping"></a><strong>About Unwrapping</strong></h2><p>展开元素？现在有一些奇怪的术语！简而言之：引入节点的 Revit 元素在使用前需要先’unwrapped’。 但是为了了解所有含义，我们需要对 Dynamo 的最初开发方式有一点了解。</p>
+<a id="more"></a>
+
 <hr>
 <h3 id="回顾历史-🏰"><a href="#回顾历史-🏰" class="headerlink" title="回顾历史 🏰"></a><strong>回顾历史 🏰</strong></h3><p>Dynamo 最初被认为是 <strong>Ian Keough</strong> 的开源爱好项目。Dynamo 最初仅用于与 Revit 集成，但它还需要 Revit API 本身不提供的扩展功能，例如可视化抽象几何。</p>
 <p>围绕此问题的方法是，Ian 的新应用程序使用其自己的等效类型实质上封装 Revit API 中的大约 1700 个类-这些类型的功能可以根据 Dynamo 的要求进行构建。</p>
@@ -275,6 +291,51 @@
 </v-card>
 
 
+
+    <v-card class="comment-card elevation-2">
+        <v-tabs v-model="commentTab"  id="comment-tabs" active-class="active-comment-tab">
+            
+                <v-tab><span id="comment-tab-0">d</span></v-tab>
+            
+                <v-tab><span id="comment-tab-1">i</span></v-tab>
+            
+                <v-tab><span id="comment-tab-2">s</span></v-tab>
+            
+                <v-tab><span id="comment-tab-3">q</span></v-tab>
+            
+                <v-tab><span id="comment-tab-4">u</span></v-tab>
+            
+                <v-tab><span id="comment-tab-5">s</span></v-tab>
+            
+        </v-tabs>
+        <v-tabs-items v-model="commentTab" id="tabs-content" data=eyJ1c2UiOiJkaXNxdXMiLCJkaXNxdXNfc2hvcnRuYW1lIjoiemVkbW9zdGVyIn0= >
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+                <v-tab-item eager=true>
+                    
+                </v-tab-item>
+            
+        </v-tabs-items>
+    </v-card>
 
         
                             <div id="mobile-footer" class="d-block d-md-none">
