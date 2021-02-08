@@ -90,7 +90,7 @@
       </tags>
   </entry>
   <entry>
-    <title>04.git 使用</title>
+    <title>05.git 使用</title>
     <url>/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h2 id="git-基本命令"><a href="#git-基本命令" class="headerlink" title="git 基本命令"></a>git 基本命令</h2><p>初始化命令、查看状态、管理文件、配置等</p>
 <a id="more"></a>
