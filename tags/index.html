@@ -39,6 +39,8 @@
     
     
     
+
+    
     
     <title>
         
@@ -267,6 +269,15 @@
         
     </div>
 </v-card>
+
+    <v-card class="comment-card elevation-2">
+        <v-tabs v-model="commentTab"  id="comment-tabs" active-class="active-comment-tab">
+            
+        </v-tabs>
+        <v-tabs-items v-model="commentTab" id="tabs-content" data=eyJ1c2UiOnRydWUsImRpc3F1c19zaG9ydG5hbWUiOiJ6ZWRtb3N0ZXIifQ== >
+            
+        </v-tabs-items>
+    </v-card>
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
