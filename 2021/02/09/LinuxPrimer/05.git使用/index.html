@@ -42,7 +42,7 @@
     
     <title>
         
-            2.13 提示 TaskDialog | 龙|Engineer|BIMer
+            04.git 使用 | 龙|Engineer|BIMer
         
     </title>
     
@@ -107,9 +107,9 @@
     <v-divider></v-divider>
     
         <div class="post-toc">
-            <a href="/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/" class="toc-header">文章目录</a>
+            <a href="/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/" class="toc-header">文章目录</a>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-TaskDialog"><span class="toc-number">1.</span> <span class="toc-text">创建 TaskDialog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-TaskDialog"><span class="toc-number">2.</span> <span class="toc-text">自定义 TaskDialog</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">基本命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%80%E9%94%AE-add-commit-push-%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">自定义一键 add . &#x2F; commit &#x2F; push 操作</span></a></li></ol>
             </div>
         </div>
     
@@ -195,7 +195,7 @@
     
     
         <div class="post-header">
-  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/">2.13 提示 TaskDialog</a>
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/">04.git 使用</a>
   <div class="post-header-meta">   
     <span>
       <v-icon color="">event</v-icon>
@@ -207,7 +207,7 @@
     </span>
     <span>
       <v-icon color="">folder</v-icon>
-      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/Linux/">Linux</a>
     </span>
     
     <span>
@@ -223,16 +223,9 @@
     
     
     <div class="post-content typo">
-        <h2 id="创建-TaskDialog"><a href="#创建-TaskDialog" class="headerlink" title="创建 TaskDialog"></a>创建 TaskDialog</h2><p><strong>TaskDialogs</strong> 是 Revit 中的用于提供详细的用户反馈 API 类。它们可以用一行代码执行，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaskDialog.Show(<span class="string">&quot;Example Title&quot;</span>, <span class="string">&quot;Example Text&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告脚本是成功运行还是遇到什么错误等情况。</p>
-<p><img src=".//2.13.Taskdialog.JPG" alt="TaskDialogs"></p>
-<hr>
-<h2 id="自定义-TaskDialog"><a href="#自定义-TaskDialog" class="headerlink" title="自定义 TaskDialog"></a>自定义 TaskDialog</h2><p>TaskDialog 也可以通过类的属性对其进行编辑，以使内容更加丰富，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">task_dialog = TaskDialog(<span class="string">&quot;Example Title&quot;</span>)</span><br><span class="line">task_dialog.CommonButtons = TaskDialogCommonButtons.Cancel | TaskDialogCommonButtons.Ok | TaskDialogCommonButtons.Close |     TaskDialogCommonButtons.No | TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.Retry | TaskDialogCommonButtons.<span class="literal">None</span></span><br><span class="line">task_dialog.FooterText = <span class="string">&quot;Example Footer Text&quot;</span></span><br><span class="line">task_dialog.MainInstruction = <span class="string">&quot;Example Main Instruction&quot;</span></span><br><span class="line">task_dialog.MainContent = <span class="string">&quot;This is the main content for this TaskDialog&quot;</span></span><br><span class="line"></span><br><span class="line">task_dialog.Show()</span><br></pre></td></tr></table></figure>
-<p>提示窗口样式</p>
-<p><img src=".//2.13.Taskdialog02.JPG" alt="TaskDialogs"></p>
-
+        <h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入需要管理的文件夹 -- 初始化命令</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看目录下文件的状态</span></span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 管理指定文件</span></span><br><span class="line">git add 文件名</span><br><span class="line"><span class="comment"># 管理目录下所有文件及文件夹</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 个人信息配置：用户名、邮箱 -- 仅配置一次即可</span></span><br><span class="line">git config --global user.email <span class="string">&quot;UserName@gmail.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;UserName&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置代理</span></span><br><span class="line">git config --global http.proxy http://127.0.0.1:10809</span><br><span class="line">git config --global https.proxy http://127.0.0.1:10809</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成版本</span></span><br><span class="line">git commit -m <span class="string">&quot;描述版本信息&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本记录</span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 版本回滚到之前的版本</span></span><br><span class="line">git reset --hard 版本号</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚到之后的版本</span></span><br><span class="line">git reflog</span><br><span class="line">git reset --hard 版本号</span><br></pre></td></tr></table></figure>
+<h2 id="自定义一键-add-commit-push-操作"><a href="#自定义一键-add-commit-push-操作" class="headerlink" title="自定义一键 add . / commit / push 操作"></a>自定义一键 add . / commit / push 操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># windows</span></span><br><span class="line"><span class="comment"># 打开文件夹 C:\Program Files\Git\etc</span></span><br><span class="line"><span class="comment"># 打开文件 .gitconfig</span></span><br><span class="line"><span class="comment"># 添加下方内容</span></span><br><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">    ad = <span class="string">&quot;!f() &#123; git add -A &amp;&amp; git commit -m \&quot;<span class="variable">$@</span>\&quot; &amp;&amp; git push; &#125;; f&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用法： git ad &quot;commit message&quot;</span></span><br></pre></td></tr></table></figure>
     </div>
     <!--文末结束语-->
     
@@ -246,15 +239,15 @@
         
             <div class="post-nav-button float-left">
                 <v-icon>chevron_left</v-icon>
-                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/">
-                    01.Window 安装子系统 Linux
+                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/04.vim%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90python/">
+                    04.vim 自动补齐 python
                 </a>
             </div>
               
           
             <div class="post-nav-button float-right">
-                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.12%20%E5%86%85%E7%BD%AE%E7%B1%BB%E5%88%AB/">      
-                    2.12 内置类别
+                <a class="font-weight-bold text-right" href="/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/">      
+                    03.安装 pip 命令
                 </a>
                 <v-icon>chevron_right</v-icon>
             </div>

@@ -165,6 +165,18 @@
         <v-list id="sub-menu" class="font-weight-medium" dense>
             
                 
+                    <v-list-item href="/categories/Linux/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>Linux</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
+                
                     <v-list-item href="/categories/dynamo/" link>
                         <v-badge :value="menuHover" transition="slide-y-transition" inline content="16" >
                             <v-hover v-model="menuHover">
@@ -257,6 +269,275 @@
 </v-row>
 
                             <v-card class="elevation-2 index-card">
+  
+    <article class="index-article">
+      
+      <div class="index-article-header">
+        <v-row no-gutters>
+          <v-col cols="auto">
+            <div class="index-article-header-date font-weight-medium">
+              2021-02-09
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            
+              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
+                  </span>
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/python/ >python</a>
+                  </span>
+                
+              </v-card>
+            
+          </v-col>
+        </v-row>
+        <span>
+          
+            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
+           
+        </span> 
+        <a class="index-article-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.8%20%E5%A4%84%E7%90%86%E4%BA%8B%E5%8A%A1%20Transactions/">2.8 处理事务 Transactions</a>
+      </div>
+      
+      <div class="index-article-content">
+        
+          Revit 是数据库需要对该数据库的更改进行仔细的排序，需要对过程进行管理和检查（针对架构的有效性以及针对 Revit API 设计的合法性）。所有这些都由 Revit 的本机 Transaction API 处理。
+Dynamo’s TransactionManager当直接为 Revit API 编码时，我们可以通过使用代码实例化 Transaction 类的新对象并调用其 Start() 方法来简单地启动新事务。但是，在 Dynamo 中，我们通常使用下面这种方式进行处理。
+TransactionManager 是 Dynamo API 的一部分，该 API 处理 Dynamo 应...
+        
+      </div>
+      
+      <div class="index-article-readmore ">
+        <v-btn text href="/2021/02/09/PythonScriptPrimer/2.8%20%E5%A4%84%E7%90%86%E4%BA%8B%E5%8A%A1%20Transactions/">阅读更多</v-btn>
+      </div>
+      <v-divider></v-divider>
+    </article> 
+  
+    <article class="index-article">
+      
+      <div class="index-article-header">
+        <v-row no-gutters>
+          <v-col cols="auto">
+            <div class="index-article-header-date font-weight-medium">
+              2021-02-09
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            
+              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
+                  </span>
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/python/ >python</a>
+                  </span>
+                
+              </v-card>
+            
+          </v-col>
+        </v-row>
+        <span>
+          
+            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
+           
+        </span> 
+        <a class="index-article-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/">2.7 访问图元参数 Parameters</a>
+      </div>
+      
+      <div class="index-article-content">
+        
+          族、族类型、族实例之间的关系Revit 的族系使用族类型和族实例之间的层次关系。API 中并行存在相同的关系：
+
+族实例 是 Revit 的 FamilyInstance 类的实例。例如：项目中创建的门、窗
+族类型 是 Revit 的 FamilyType 类的实例。例如：防火门 FM1822 类型
+
+
+族实例参数通过 FamilyInstance 对象访问，而族类型的参数通过实例的 FamilyType 类型对象访问。
+
+包含关系：FamilyInstance -&gt; FamilyType -&gt; Family
+
+每个FamilyInstance都是通过FamilyType创建...
+        
+      </div>
+      
+      <div class="index-article-readmore ">
+        <v-btn text href="/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/">阅读更多</v-btn>
+      </div>
+      <v-divider></v-divider>
+    </article> 
+  
+    <article class="index-article">
+      
+      <div class="index-article-header">
+        <v-row no-gutters>
+          <v-col cols="auto">
+            <div class="index-article-header-date font-weight-medium">
+              2021-02-09
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            
+              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
+                  </span>
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/python/ >python</a>
+                  </span>
+                
+              </v-card>
+            
+          </v-col>
+        </v-row>
+        <span>
+          
+            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
+           
+        </span> 
+        <a class="index-article-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/">2.6 几何(Geometry)转换</a>
+      </div>
+      
+      <div class="index-article-content">
+        
+          Revit 几何图形和 Dynamo 几何图形Dynamo 具有与 Revit 并行的类库。意味着需要使用特殊的转换方法来使两者之间进行转换实现数据交互。前面章节也提到过需要展开对象。
+转换方式您可以使用 Dynamo API 的转换方法轻松地在 Dynamo 和 Revit 几何类型之间进行切换:
+
+ToProtoType()
+ToDSType()
+ToLine()
+ToPoint()
+ToVector()
+ToXyz()
+
+PointsRevit 点在 3D 空间中由其 X，Y 和 Z 坐标定义。创建方法：先创建点的对象 Autodesk.Revit.DB.XYZ，在创建 Revit...
+        
+      </div>
+      
+      <div class="index-article-readmore ">
+        <v-btn text href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/">阅读更多</v-btn>
+      </div>
+      <v-divider></v-divider>
+    </article> 
+  
+    <article class="index-article">
+      
+      <div class="index-article-header">
+        <v-row no-gutters>
+          <v-col cols="auto">
+            <div class="index-article-header-date font-weight-medium">
+              2021-02-09
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            
+              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
+                  </span>
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/python/ >python</a>
+                  </span>
+                
+              </v-card>
+            
+          </v-col>
+        </v-row>
+        <span>
+          
+            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
+           
+        </span> 
+        <a class="index-article-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/">2.5 过滤器 FilteredElementCollector</a>
+      </div>
+      
+      <div class="index-article-content">
+        
+          介绍处理模型的前提是获取到相应类型的元素。Revit 的 FilteredElementCollector 允许您使用一组自定义的过滤规则，在 Revit 文档的数据库中快速搜索元素。您可以将搜索过滤器和修饰符堆叠在一起，从而使您可以进行几乎无限次的自定义搜索。
+举个简单的例子FilteredElementCollectors 将返回 Element 或 ElementIds 的列表。
+快速组合在一起非常简单。例如：
+12345all_furniture = FilteredElementCollector(doc)             # 创建过滤器all_furniture.Of...
+        
+      </div>
+      
+      <div class="index-article-readmore ">
+        <v-btn text href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/">阅读更多</v-btn>
+      </div>
+      <v-divider></v-divider>
+    </article> 
+  
+    <article class="index-article">
+      
+      <div class="index-article-header">
+        <v-row no-gutters>
+          <v-col cols="auto">
+            <div class="index-article-header-date font-weight-medium">
+              2021-02-09
+            </div>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="auto">
+            
+              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
+                  </span>
+                
+                  <span class="index-article-header-tag-content">
+                    <v-icon>fas fa-tag</v-icon>
+                    <a rel="tag" href = /tags/python/ >python</a>
+                  </span>
+                
+              </v-card>
+            
+          </v-col>
+        </v-row>
+        <span>
+          
+            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
+           
+        </span> 
+        <a class="index-article-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/">2.3 了解 Doc, UIDoc, App, UIApp</a>
+      </div>
+      
+      <div class="index-article-content">
+        
+          样板代码正如在样板代码一章中所见，Revit 样板代码通常需要设置 Revit 应用程序和文档 doc，uidoc，app，uiapp的句柄。
+但是为什么呢？
+Application and Document一开始，API 的这一部分似乎有些混乱。问题比比皆是：Revit 不能仅算出我所处的文档（即模型）吗？为什么我有一个 Document 和一个 UIDocument？为什么要引用应用程序-应用程序不是 Revit 吗？ 这些是很好的问题。幸运的是，Revit 的 API 指南为我们提供了一些答案：
+
+Revit Platform API 中的顶级对象是应用程序和文档。这些由类 App...
+        
+      </div>
+      
+      <div class="index-article-readmore ">
+        <v-btn text href="/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/">阅读更多</v-btn>
+      </div>
+      <v-divider></v-divider>
+    </article> 
   
     <article class="index-article">
       
@@ -510,54 +791,6 @@
       </div>
       <v-divider></v-divider>
     </article> 
-  
-    <article class="index-article">
-      
-      <div class="index-article-header">
-        <v-row no-gutters>
-          <v-col cols="auto">
-            <div class="index-article-header-date font-weight-medium">
-              2021-02-08
-            </div>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="auto">
-            
-              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
-                  </span>
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/python/ >python</a>
-                  </span>
-                
-              </v-card>
-            
-          </v-col>
-        </v-row>
-        <span>
-          
-            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
-           
-        </span> 
-        <a class="index-article-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">1.1 Dynamo&#39;s Python编辑器</a>
-      </div>
-      
-      <div class="index-article-content">
-        
-          Dynamo 的 Python 脚本编辑器Python 脚本节点随 Dynamo 一起安装，并且在许多方面，它与任何其他节点一样：可以放置在工作空间中，重命名并可以接受任意数量的输入。
-        
-      </div>
-      
-      <div class="index-article-readmore ">
-        <v-btn text href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">阅读更多</v-btn>
-      </div>
-      <v-divider></v-divider>
-    </article> 
    
 </v-card>  
 
@@ -565,7 +798,7 @@
   <div id="pagination" class="text-center">
     <v-pagination 
       v-model="currentPage" 
-      :length=2 
+      :length=3 
       @input="PageChange" 
       prev-icon="chevron_left"
       next-icon="chevron_right"

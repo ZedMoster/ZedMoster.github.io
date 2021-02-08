@@ -6,7 +6,7 @@
   <link href="https://zedmoster.github.io/atom.xml" rel="self"/>
   
   <link href="https://zedmoster.github.io/"/>
-  <updated>2021-02-08T20:40:22.276Z</updated>
+  <updated>2021-02-08T20:46:42.928Z</updated>
   <id>https://zedmoster.github.io/</id>
   
   <author>
@@ -15,6 +15,123 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>04.vim 自动补齐 python</title>
+    <link href="https://zedmoster.github.io/2021/02/09/LinuxPrimer/04.vim%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90python/"/>
+    <id>https://zedmoster.github.io/2021/02/09/LinuxPrimer/04.vim%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90python/</id>
+    <published>2021-02-09T12:00:03.000Z</published>
+    <updated>2021-02-08T20:46:42.928Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Pydiction"><a href="#Pydiction" class="headerlink" title="Pydiction"></a>Pydiction</h2><p><strong>Pydiction</strong> 可以使我们使用 Tab 键自动补全 Python 代码在 Vim，是一款非常不错的插件。<br>不需要安装，所有没有任何依赖包问题。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line">mkdir -p ~/.vim/bundle</span><br><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">cd ~/.vim/bundle</span><br><span class="line"><span class="comment"># 下载 Pydiction</span></span><br><span class="line">git clone https://github.com/rkulla/pydiction.git</span><br><span class="line"><span class="comment"># 复制文件到指定位置</span></span><br><span class="line">cp -r ~/.vim/bundle/pydiction/after/ ~/.vim</span><br><span class="line"><span class="comment"># 新建.vimrc文件</span></span><br><span class="line">vim ~/.vimrc</span><br><span class="line"><span class="comment"># 在.vimrc文件添加如下配置：</span></span><br><span class="line"></span><br><span class="line">filetype plugin on</span><br><span class="line">autocmd FileType python <span class="built_in">set</span> omnifunc=pythoncomplete<span class="comment">#Complete</span></span><br><span class="line">let g:pydiction_location=<span class="string">&#x27;~/.vim/bundle/pydiction/complete-dict&#x27;</span></span><br><span class="line">let g:pydiction_menu_height = <span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> filetype=python</span><br><span class="line">au BufNewFile,BufRead *.py,*.pyw setf python</span><br><span class="line"><span class="built_in">set</span> autoindent</span><br><span class="line"><span class="built_in">set</span> smartindent</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line"><span class="built_in">set</span> expandtab</span><br><span class="line"><span class="built_in">set</span> tabstop=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> shiftwidth=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> softtabstop=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> textwidth=<span class="number">79</span></span><br><span class="line"><span class="built_in">set</span> encoding=utf-<span class="number">8</span></span><br><span class="line"><span class="built_in">set</span> fileformat=unix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启后 使用Tab键自动补全python代码了</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">学习安装子系统 Linux</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://zedmoster.github.io/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="https://zedmoster.github.io/tags/linux/"/>
+    
+    <category term="Shell" scheme="https://zedmoster.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>04.git 使用</title>
+    <link href="https://zedmoster.github.io/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/"/>
+    <id>https://zedmoster.github.io/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/</id>
+    <published>2021-02-09T12:00:03.000Z</published>
+    <updated>2021-02-08T20:48:17.691Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入需要管理的文件夹 -- 初始化命令</span></span><br><span class="line">git init</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看目录下文件的状态</span></span><br><span class="line">git status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 管理指定文件</span></span><br><span class="line">git add 文件名</span><br><span class="line"><span class="comment"># 管理目录下所有文件及文件夹</span></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 个人信息配置：用户名、邮箱 -- 仅配置一次即可</span></span><br><span class="line">git config --global user.email <span class="string">&quot;UserName@gmail.com&quot;</span></span><br><span class="line">git config --global user.name <span class="string">&quot;UserName&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置代理</span></span><br><span class="line">git config --global http.proxy http://127.0.0.1:10809</span><br><span class="line">git config --global https.proxy http://127.0.0.1:10809</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成版本</span></span><br><span class="line">git commit -m <span class="string">&quot;描述版本信息&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本记录</span></span><br><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure><h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">git <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 版本回滚到之前的版本</span></span><br><span class="line">git reset --hard 版本号</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚到之后的版本</span></span><br><span class="line">git reflog</span><br><span class="line">git reset --hard 版本号</span><br></pre></td></tr></table></figure><h2 id="自定义一键-add-commit-push-操作"><a href="#自定义一键-add-commit-push-操作" class="headerlink" title="自定义一键 add . / commit / push 操作"></a>自定义一键 add . / commit / push 操作</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># windows</span></span><br><span class="line"><span class="comment"># 打开文件夹 C:\Program Files\Git\etc</span></span><br><span class="line"><span class="comment"># 打开文件 .gitconfig</span></span><br><span class="line"><span class="comment"># 添加下方内容</span></span><br><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">    ad = <span class="string">&quot;!f() &#123; git add -A &amp;&amp; git commit -m \&quot;<span class="variable">$@</span>\&quot; &amp;&amp; git push; &#125;; f&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 用法： git ad &quot;commit message&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">学习安装子系统 Linux</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://zedmoster.github.io/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="https://zedmoster.github.io/tags/linux/"/>
+    
+    <category term="Shell" scheme="https://zedmoster.github.io/tags/Shell/"/>
+    
+    <category term="git" scheme="https://zedmoster.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>03.安装 pip 命令</title>
+    <link href="https://zedmoster.github.io/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/"/>
+    <id>https://zedmoster.github.io/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/</id>
+    <published>2021-02-09T12:00:02.000Z</published>
+    <updated>2021-02-08T20:46:16.672Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装-pip-或-pip3"><a href="#安装-pip-或-pip3" class="headerlink" title="安装 pip 或 pip3"></a>安装 pip 或 pip3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装python2 版本 pip</span></span><br><span class="line">sudo apt install python-pip</span><br><span class="line"><span class="comment"># 安装python3 版本 pip3</span></span><br><span class="line">sudo apt install python3-pip</span><br></pre></td></tr></table></figure><h2 id="仅使用-python3-时使用-pip-代替-pip3"><a href="#仅使用-python3-时使用-pip-代替-pip3" class="headerlink" title="仅使用 python3 时使用 pip 代替 pip3"></a>仅使用 python3 时使用 pip 代替 pip3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="comment"># 添加替换的内容</span></span><br><span class="line">alias pip=<span class="string">&quot;pip3&quot;</span></span><br><span class="line">alias python=<span class="string">&quot;python3&quot;</span></span><br><span class="line"><span class="comment"># 保存后更新配置</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure><h2 id="更换-pip-源"><a href="#更换-pip-源" class="headerlink" title="更换 pip 源"></a>更换 pip 源</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开创建文件夹</span></span><br><span class="line">mkdir ~/.config/pip/</span><br><span class="line"><span class="comment"># 打开文件目录</span></span><br><span class="line">cd ~/.config/pip/</span><br><span class="line"><span class="comment"># 创建并打开文件</span></span><br><span class="line">vim pip.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制内容并保存</span></span><br><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure><hr><h2 id="安装卸载软件"><a href="#安装卸载软件" class="headerlink" title="安装卸载软件"></a>安装卸载软件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo apt install ipython3</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt remove ipython3</span><br></pre></td></tr></table></figure><h2 id="安装-scrapy-后创建软连接"><a href="#安装-scrapy-后创建软连接" class="headerlink" title="安装 scrapy 后创建软连接"></a>安装 scrapy 后创建软连接</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确定安装位置</span></span><br><span class="line">/usr/local/python3/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 建立软链接</span></span><br><span class="line">ln -s /usr/local/python3/<span class="built_in">bin</span>/scrapy /usr/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 删除软链接</span></span><br><span class="line">rm -rf scrapy</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">学习安装子系统 Linux</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://zedmoster.github.io/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="https://zedmoster.github.io/tags/linux/"/>
+    
+    <category term="Shell" scheme="https://zedmoster.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>02.Ubuntu 镜像使用帮助</title>
+    <link href="https://zedmoster.github.io/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/"/>
+    <id>https://zedmoster.github.io/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/</id>
+    <published>2021-02-09T12:00:01.000Z</published>
+    <updated>2021-02-08T20:50:01.503Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ubuntu 的软件源配置文件是 <strong>/etc/apt/sources.list</strong></p><h2 id="设置流"><a href="#设置流" class="headerlink" title="设置流"></a>设置流</h2><ul><li><strong>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</strong></li><li><strong>cd /etc/apt/</strong></li><li><strong>sudo vim sources.list</strong></li></ul><p>将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用 TUNA 的软件源镜像。</p><h2 id="软件源镜像-18-04-LTS"><a href="#软件源镜像-18-04-LTS" class="headerlink" title="软件源镜像:18.04 LTS"></a>软件源镜像:18.04 LTS</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure><h2 id="软件源镜像-20-04-LTS"><a href="#软件源镜像-20-04-LTS" class="headerlink" title="软件源镜像:20.04 LTS"></a>软件源镜像:20.04 LTS</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">学习安装子系统 Linux</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://zedmoster.github.io/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="https://zedmoster.github.io/tags/linux/"/>
+    
+    <category term="Shell" scheme="https://zedmoster.github.io/tags/Shell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>01.Window 安装子系统 Linux</title>
+    <link href="https://zedmoster.github.io/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/"/>
+    <id>https://zedmoster.github.io/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/</id>
+    <published>2021-02-09T12:00:00.000Z</published>
+    <updated>2021-02-08T20:45:29.773Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>设置 -&gt; 应用和功能 -&gt; <strong>启用或关闭 Windows 功能</strong></li></ul><p><img src=".//1.%E5%90%AF%E7%94%A8%E5%8A%9F%E8%83%BD.png" alt="start" title="启用子系统"></p><ul><li><p>打开商店，搜素 <strong>ubuntu</strong> 安装相应版本即可</p></li><li><p>打开系统，第一次打开等待安装完成后<strong>设置用户名及密码</strong></p></li></ul><hr><h2 id="子系统-ubuntu-vim-字体显示"><a href="#子系统-ubuntu-vim-字体显示" class="headerlink" title="子系统 ubuntu vim 字体显示"></a>子系统 ubuntu vim 字体显示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开注册列表位置</span></span><br><span class="line"><span class="comment"># 计算机\HKEY_CURRENT_USER\Console\</span></span><br><span class="line"><span class="comment"># 选择 ubuntu 系统目录 右键 添加 &quot;DWORD（32 位）值&quot;</span></span><br><span class="line"><span class="comment"># 添加 CodePage</span></span><br><span class="line"><span class="comment"># 十进制值 65001</span></span><br></pre></td></tr></table></figure><p><img src=".//2.%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93.png" alt="font" title="vim 字体显示设置"></p><h2 id="Windows-的-ubuntu-子系统-VsCode-打开"><a href="#Windows-的-ubuntu-子系统-VsCode-打开" class="headerlink" title="Windows 的 ubuntu 子系统 VsCode 打开"></a>Windows 的 ubuntu 子系统 VsCode 打开</h2><ul><li><p>1.Visual Studio Code 安装插件 “Remote - WSL”</p></li><li><p>2.打开<strong>ubuntu</strong>子系统,输入 <strong>code .</strong></p></li></ul>]]></content>
+    
+    
+    <summary type="html">学习安装子系统 Linux</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://zedmoster.github.io/categories/Linux/"/>
+    
+    
+    <category term="linux" scheme="https://zedmoster.github.io/tags/linux/"/>
+    
+    <category term="Shell" scheme="https://zedmoster.github.io/tags/Shell/"/>
+    
+  </entry>
   
   <entry>
     <title>2.13 提示 TaskDialog</title>
@@ -349,29 +466,6 @@
     
     
     <summary type="html">样板代码完成所有初始设置，便可以愉快的敲代码</summary>
-    
-    
-    
-    <category term="dynamo" scheme="https://zedmoster.github.io/categories/dynamo/"/>
-    
-    
-    <category term="dynamo" scheme="https://zedmoster.github.io/tags/dynamo/"/>
-    
-    <category term="python" scheme="https://zedmoster.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>1.1 Dynamo&#39;s Python编辑器</title>
-    <link href="https://zedmoster.github.io/2021/02/08/PythonScriptPrimer/1.1%20Dynamo&#39;s%20Python%E7%BC%96%E8%BE%91%E5%99%A8/"/>
-    <id>https://zedmoster.github.io/2021/02/08/PythonScriptPrimer/1.1%20Dynamo&#39;s%20Python%E7%BC%96%E8%BE%91%E5%99%A8/</id>
-    <published>2021-02-08T11:49:51.000Z</published>
-    <updated>2021-02-08T12:12:41.712Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Dynamo-的-Python-脚本编辑器"><a href="#Dynamo-的-Python-脚本编辑器" class="headerlink" title="Dynamo 的 Python 脚本编辑器"></a>Dynamo 的 Python 脚本编辑器</h2><p><em>Python</em> 脚本节点随 <em>Dynamo</em> 一起安装，并且在许多方面，它与任何其他节点一样：可以放置在工作空间中，重命名并可以接受任意数量的输入。</p><a id="more"></a><p>但是，与其他节点不同，如果右键单击并选择 <strong>Edit..</strong> 则会出现一个脚本编辑窗口(双击节点)，如下所示：</p><p><img src=".//3.1.edit.png" alt="默认情况下Dynamo将使用上面的代码填充编辑器"></p><p>在此窗口中，您可以编写 <strong>IronPython</strong> 脚本，这些脚本将作为 Dynamo 定义的一部分直接执行。要保存脚本，请单击 <strong>保存更改</strong> 按钮，然后保存其中的 Dynamo 定义。否则，请单击“取消”按钮以放弃所做的任何更改。</p><h2 id="如何编写程序"><a href="#如何编写程序" class="headerlink" title="如何编写程序"></a>如何编写程序</h2><p>使用 <em>Dynamo</em> 编写 <em>Python</em> 代码！后面会学习设置样板代码，引用 <strong>Revit Api</strong>。</p><p><a href="https://primer.dynamobim.org/">dynamo 手册</a></p>]]></content>
-    
-    
-    <summary type="html">Python脚本可让您在Dynamo中编写和执行IronPython代码</summary>
     
     
     

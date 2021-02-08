@@ -42,7 +42,7 @@
     
     <title>
         
-            search | 龙|Engineer|BIMer
+            02.Ubuntu 镜像使用帮助 | 龙|Engineer|BIMer
         
     </title>
     
@@ -106,33 +106,12 @@
     </v-list>
     <v-divider></v-divider>
     
-        <v-list id="sub-menu" class="font-weight-medium" dense>
-            
-                
-                    <v-list-item href="/categories/Linux/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>Linux</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-                
-                    <v-list-item href="/categories/dynamo/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="16" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>dynamo</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-        </v-list>    
+        <div class="post-toc">
+            <a href="/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">设置流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E9%95%9C%E5%83%8F-18-04-LTS"><span class="toc-number">2.</span> <span class="toc-text">软件源镜像:18.04 LTS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%BA%90%E9%95%9C%E5%83%8F-20-04-LTS"><span class="toc-number">3.</span> <span class="toc-text">软件源镜像:20.04 LTS</span></a></li></ol>
+            </div>
+        </div>
     
 
     <div id="footer">
@@ -213,16 +192,77 @@
 </v-row>
 
                             <v-card class="elevation-2 post-card">
-    <div class="post-header">
-        <a class="post-header-title font-weight-medium" href="/search/index.html">搜索</a>
-    </div>
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/">02.Ubuntu 镜像使用帮助</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/Linux/">Linux</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
     <div class="post-content typo">
+        <p>Ubuntu 的软件源配置文件是 <strong>/etc/apt/sources.list</strong></p>
+<h2 id="设置流"><a href="#设置流" class="headerlink" title="设置流"></a>设置流</h2><ul>
+<li><strong>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak</strong></li>
+<li><strong>cd /etc/apt/</strong></li>
+<li><strong>sudo vim sources.list</strong></li>
+</ul>
+<p>将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用 TUNA 的软件源镜像。</p>
+<h2 id="软件源镜像-18-04-LTS"><a href="#软件源镜像-18-04-LTS" class="headerlink" title="软件源镜像:18.04 LTS"></a>软件源镜像:18.04 LTS</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+<h2 id="软件源镜像-20-04-LTS"><a href="#软件源镜像-20-04-LTS" class="headerlink" title="软件源镜像:20.04 LTS"></a>软件源镜像:20.04 LTS</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
         
-            <v-text-field label="Search" v-model="searchPageValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchPageValue,true)"></v-text-field>
-            <v-card class="elevation-0" id="search-result"></v-card>
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/">
+                    03.安装 pip 命令
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/">      
+                    01.Window 安装子系统 Linux
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
         
     </div>
 </v-card>
+
+
+
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
@@ -252,6 +292,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

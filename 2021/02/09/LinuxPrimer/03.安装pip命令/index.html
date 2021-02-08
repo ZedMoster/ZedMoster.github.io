@@ -42,7 +42,7 @@
     
     <title>
         
-            2.13 提示 TaskDialog | 龙|Engineer|BIMer
+            03.安装 pip 命令 | 龙|Engineer|BIMer
         
     </title>
     
@@ -107,9 +107,9 @@
     <v-divider></v-divider>
     
         <div class="post-toc">
-            <a href="/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/" class="toc-header">文章目录</a>
+            <a href="/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/" class="toc-header">文章目录</a>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-TaskDialog"><span class="toc-number">1.</span> <span class="toc-text">创建 TaskDialog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-TaskDialog"><span class="toc-number">2.</span> <span class="toc-text">自定义 TaskDialog</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-pip-%E6%88%96-pip3"><span class="toc-number">1.</span> <span class="toc-text">安装 pip 或 pip3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%85%E4%BD%BF%E7%94%A8-python3-%E6%97%B6%E4%BD%BF%E7%94%A8-pip-%E4%BB%A3%E6%9B%BF-pip3"><span class="toc-number">2.</span> <span class="toc-text">仅使用 python3 时使用 pip 代替 pip3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2-pip-%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">更换 pip 源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">安装卸载软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-scrapy-%E5%90%8E%E5%88%9B%E5%BB%BA%E8%BD%AF%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.</span> <span class="toc-text">安装 scrapy 后创建软连接</span></a></li></ol>
             </div>
         </div>
     
@@ -195,7 +195,7 @@
     
     
         <div class="post-header">
-  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/">2.13 提示 TaskDialog</a>
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/">03.安装 pip 命令</a>
   <div class="post-header-meta">   
     <span>
       <v-icon color="">event</v-icon>
@@ -207,7 +207,7 @@
     </span>
     <span>
       <v-icon color="">folder</v-icon>
-      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+      分类于:&nbsp;<a class="category-link" href="/categories/Linux/">Linux</a>
     </span>
     
     <span>
@@ -223,16 +223,12 @@
     
     
     <div class="post-content typo">
-        <h2 id="创建-TaskDialog"><a href="#创建-TaskDialog" class="headerlink" title="创建 TaskDialog"></a>创建 TaskDialog</h2><p><strong>TaskDialogs</strong> 是 Revit 中的用于提供详细的用户反馈 API 类。它们可以用一行代码执行，如下所示：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TaskDialog.Show(<span class="string">&quot;Example Title&quot;</span>, <span class="string">&quot;Example Text&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告脚本是成功运行还是遇到什么错误等情况。</p>
-<p><img src=".//2.13.Taskdialog.JPG" alt="TaskDialogs"></p>
+        <h2 id="安装-pip-或-pip3"><a href="#安装-pip-或-pip3" class="headerlink" title="安装 pip 或 pip3"></a>安装 pip 或 pip3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装python2 版本 pip</span></span><br><span class="line">sudo apt install python-pip</span><br><span class="line"><span class="comment"># 安装python3 版本 pip3</span></span><br><span class="line">sudo apt install python3-pip</span><br></pre></td></tr></table></figure>
+<h2 id="仅使用-python3-时使用-pip-代替-pip3"><a href="#仅使用-python3-时使用-pip-代替-pip3" class="headerlink" title="仅使用 python3 时使用 pip 代替 pip3"></a>仅使用 python3 时使用 pip 代替 pip3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="comment"># 添加替换的内容</span></span><br><span class="line">alias pip=<span class="string">&quot;pip3&quot;</span></span><br><span class="line">alias python=<span class="string">&quot;python3&quot;</span></span><br><span class="line"><span class="comment"># 保存后更新配置</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="更换-pip-源"><a href="#更换-pip-源" class="headerlink" title="更换 pip 源"></a>更换 pip 源</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开创建文件夹</span></span><br><span class="line">mkdir ~/.config/pip/</span><br><span class="line"><span class="comment"># 打开文件目录</span></span><br><span class="line">cd ~/.config/pip/</span><br><span class="line"><span class="comment"># 创建并打开文件</span></span><br><span class="line">vim pip.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制内容并保存</span></span><br><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="自定义-TaskDialog"><a href="#自定义-TaskDialog" class="headerlink" title="自定义 TaskDialog"></a>自定义 TaskDialog</h2><p>TaskDialog 也可以通过类的属性对其进行编辑，以使内容更加丰富，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">task_dialog = TaskDialog(<span class="string">&quot;Example Title&quot;</span>)</span><br><span class="line">task_dialog.CommonButtons = TaskDialogCommonButtons.Cancel | TaskDialogCommonButtons.Ok | TaskDialogCommonButtons.Close |     TaskDialogCommonButtons.No | TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.Retry | TaskDialogCommonButtons.<span class="literal">None</span></span><br><span class="line">task_dialog.FooterText = <span class="string">&quot;Example Footer Text&quot;</span></span><br><span class="line">task_dialog.MainInstruction = <span class="string">&quot;Example Main Instruction&quot;</span></span><br><span class="line">task_dialog.MainContent = <span class="string">&quot;This is the main content for this TaskDialog&quot;</span></span><br><span class="line"></span><br><span class="line">task_dialog.Show()</span><br></pre></td></tr></table></figure>
-<p>提示窗口样式</p>
-<p><img src=".//2.13.Taskdialog02.JPG" alt="TaskDialogs"></p>
-
+<h2 id="安装卸载软件"><a href="#安装卸载软件" class="headerlink" title="安装卸载软件"></a>安装卸载软件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo apt install ipython3</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt remove ipython3</span><br></pre></td></tr></table></figure>
+<h2 id="安装-scrapy-后创建软连接"><a href="#安装-scrapy-后创建软连接" class="headerlink" title="安装 scrapy 后创建软连接"></a>安装 scrapy 后创建软连接</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 确定安装位置</span></span><br><span class="line">/usr/local/python3/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 建立软链接</span></span><br><span class="line">ln -s /usr/local/python3/<span class="built_in">bin</span>/scrapy /usr/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 删除软链接</span></span><br><span class="line">rm -rf scrapy</span><br></pre></td></tr></table></figure>
     </div>
     <!--文末结束语-->
     
@@ -246,15 +242,15 @@
         
             <div class="post-nav-button float-left">
                 <v-icon>chevron_left</v-icon>
-                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/">
-                    01.Window 安装子系统 Linux
+                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/">
+                    04.git 使用
                 </a>
             </div>
               
           
             <div class="post-nav-button float-right">
-                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.12%20%E5%86%85%E7%BD%AE%E7%B1%BB%E5%88%AB/">      
-                    2.12 内置类别
+                <a class="font-weight-bold text-right" href="/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/">      
+                    02.Ubuntu 镜像使用帮助
                 </a>
                 <v-icon>chevron_right</v-icon>
             </div>

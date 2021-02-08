@@ -42,7 +42,7 @@
     
     <title>
         
-            search | 龙|Engineer|BIMer
+            01.Window 安装子系统 Linux | 龙|Engineer|BIMer
         
     </title>
     
@@ -106,33 +106,12 @@
     </v-list>
     <v-divider></v-divider>
     
-        <v-list id="sub-menu" class="font-weight-medium" dense>
-            
-                
-                    <v-list-item href="/categories/Linux/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>Linux</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-                
-                    <v-list-item href="/categories/dynamo/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="16" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>dynamo</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-        </v-list>    
+        <div class="post-toc">
+            <a href="/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%B3%BB%E7%BB%9F-ubuntu-vim-%E5%AD%97%E4%BD%93%E6%98%BE%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">子系统 ubuntu vim 字体显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows-%E7%9A%84-ubuntu-%E5%AD%90%E7%B3%BB%E7%BB%9F-VsCode-%E6%89%93%E5%BC%80"><span class="toc-number">2.</span> <span class="toc-text">Windows 的 ubuntu 子系统 VsCode 打开</span></a></li></ol>
+            </div>
+        </div>
     
 
     <div id="footer">
@@ -213,16 +192,88 @@
 </v-row>
 
                             <v-card class="elevation-2 post-card">
-    <div class="post-header">
-        <a class="post-header-title font-weight-medium" href="/search/index.html">搜索</a>
-    </div>
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/LinuxPrimer/01.%E5%AE%89%E8%A3%85%E5%AD%90%E7%B3%BB%E7%BB%9F/">01.Window 安装子系统 Linux</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/Linux/">Linux</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
     <div class="post-content typo">
+        <ul>
+<li>设置 -&gt; 应用和功能 -&gt; <strong>启用或关闭 Windows 功能</strong></li>
+</ul>
+<p><img src=".//1.%E5%90%AF%E7%94%A8%E5%8A%9F%E8%83%BD.png" alt="start" title="启用子系统"></p>
+<ul>
+<li><p>打开商店，搜素 <strong>ubuntu</strong> 安装相应版本即可</p>
+</li>
+<li><p>打开系统，第一次打开等待安装完成后<strong>设置用户名及密码</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="子系统-ubuntu-vim-字体显示"><a href="#子系统-ubuntu-vim-字体显示" class="headerlink" title="子系统 ubuntu vim 字体显示"></a>子系统 ubuntu vim 字体显示</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开注册列表位置</span></span><br><span class="line"><span class="comment"># 计算机\HKEY_CURRENT_USER\Console\</span></span><br><span class="line"><span class="comment"># 选择 ubuntu 系统目录 右键 添加 &quot;DWORD（32 位）值&quot;</span></span><br><span class="line"><span class="comment"># 添加 CodePage</span></span><br><span class="line"><span class="comment"># 十进制值 65001</span></span><br></pre></td></tr></table></figure>
+<p><img src=".//2.%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93.png" alt="font" title="vim 字体显示设置"></p>
+<h2 id="Windows-的-ubuntu-子系统-VsCode-打开"><a href="#Windows-的-ubuntu-子系统-VsCode-打开" class="headerlink" title="Windows 的 ubuntu 子系统 VsCode 打开"></a>Windows 的 ubuntu 子系统 VsCode 打开</h2><ul>
+<li><p>1.Visual Studio Code 安装插件 “Remote - WSL”</p>
+</li>
+<li><p>2.打开<strong>ubuntu</strong>子系统,输入 <strong>code .</strong></p>
+</li>
+</ul>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
         
-            <v-text-field label="Search" v-model="searchPageValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchPageValue,true)"></v-text-field>
-            <v-card class="elevation-0" id="search-result"></v-card>
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/">
+                    02.Ubuntu 镜像使用帮助
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/">      
+                    2.13 提示 TaskDialog
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
         
     </div>
 </v-card>
+
+
+
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
@@ -252,6 +303,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

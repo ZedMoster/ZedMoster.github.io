@@ -42,7 +42,7 @@
     
     <title>
         
-            search | 龙|Engineer|BIMer
+            04.vim 自动补齐 python | 龙|Engineer|BIMer
         
     </title>
     
@@ -106,33 +106,12 @@
     </v-list>
     <v-divider></v-divider>
     
-        <v-list id="sub-menu" class="font-weight-medium" dense>
-            
-                
-                    <v-list-item href="/categories/Linux/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>Linux</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-                
-                    <v-list-item href="/categories/dynamo/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="16" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>dynamo</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-        </v-list>    
+        <div class="post-toc">
+            <a href="/2021/02/09/LinuxPrimer/04.vim%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90python/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Pydiction"><span class="toc-number">1.</span> <span class="toc-text">Pydiction</span></a></li></ol>
+            </div>
+        </div>
     
 
     <div id="footer">
@@ -213,16 +192,63 @@
 </v-row>
 
                             <v-card class="elevation-2 post-card">
-    <div class="post-header">
-        <a class="post-header-title font-weight-medium" href="/search/index.html">搜索</a>
-    </div>
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/LinuxPrimer/04.vim%E8%87%AA%E5%8A%A8%E8%A1%A5%E9%BD%90python/">04.vim 自动补齐 python</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/Linux/">Linux</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
     <div class="post-content typo">
-        
-            <v-text-field label="Search" v-model="searchPageValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchPageValue,true)"></v-text-field>
-            <v-card class="elevation-0" id="search-result"></v-card>
+        <h2 id="Pydiction"><a href="#Pydiction" class="headerlink" title="Pydiction"></a>Pydiction</h2><p><strong>Pydiction</strong> 可以使我们使用 Tab 键自动补全 Python 代码在 Vim，是一款非常不错的插件。<br>不需要安装，所有没有任何依赖包问题。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line">mkdir -p ~/.vim/bundle</span><br><span class="line"><span class="comment"># 打开目录</span></span><br><span class="line">cd ~/.vim/bundle</span><br><span class="line"><span class="comment"># 下载 Pydiction</span></span><br><span class="line">git clone https://github.com/rkulla/pydiction.git</span><br><span class="line"><span class="comment"># 复制文件到指定位置</span></span><br><span class="line">cp -r ~/.vim/bundle/pydiction/after/ ~/.vim</span><br><span class="line"><span class="comment"># 新建.vimrc文件</span></span><br><span class="line">vim ~/.vimrc</span><br><span class="line"><span class="comment"># 在.vimrc文件添加如下配置：</span></span><br><span class="line"></span><br><span class="line">filetype plugin on</span><br><span class="line">autocmd FileType python <span class="built_in">set</span> omnifunc=pythoncomplete<span class="comment">#Complete</span></span><br><span class="line">let g:pydiction_location=<span class="string">&#x27;~/.vim/bundle/pydiction/complete-dict&#x27;</span></span><br><span class="line">let g:pydiction_menu_height = <span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> filetype=python</span><br><span class="line">au BufNewFile,BufRead *.py,*.pyw setf python</span><br><span class="line"><span class="built_in">set</span> autoindent</span><br><span class="line"><span class="built_in">set</span> smartindent</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line"><span class="built_in">set</span> expandtab</span><br><span class="line"><span class="built_in">set</span> tabstop=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> shiftwidth=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> softtabstop=<span class="number">4</span></span><br><span class="line"><span class="built_in">set</span> textwidth=<span class="number">79</span></span><br><span class="line"><span class="built_in">set</span> encoding=utf-<span class="number">8</span></span><br><span class="line"><span class="built_in">set</span> fileformat=unix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启后 使用Tab键自动补全python代码了</span></span><br></pre></td></tr></table></figure>
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/">      
+                    04.git 使用
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
         
     </div>
 </v-card>
+
+
+
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
@@ -252,6 +278,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

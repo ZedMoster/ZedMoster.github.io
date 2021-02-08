@@ -109,6 +109,18 @@
         <v-list id="sub-menu" class="font-weight-medium" dense>
             
                 
+                    <v-list-item href="/categories/Linux/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>Linux</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
+                
                     <v-list-item href="/categories/dynamo/" link>
                         <v-badge :value="menuHover" transition="slide-y-transition" inline content="16" >
                             <v-hover v-model="menuHover">
@@ -210,6 +222,30 @@
                 counter.tags
             </div>
             <div class="tags-contain">
+                
+                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="5" >
+                        <v-hover v-model="tagHover">
+                            <v-chip color="secondary" class="tags-chip font-weight-medium">
+                                <a href="/tags/linux/">linux</a>
+                            </v-chip>
+                        </v-hover>
+                    </v-badge>
+                
+                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="5" >
+                        <v-hover v-model="tagHover">
+                            <v-chip color="secondary" class="tags-chip font-weight-medium">
+                                <a href="/tags/Shell/">Shell</a>
+                            </v-chip>
+                        </v-hover>
+                    </v-badge>
+                
+                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="1" >
+                        <v-hover v-model="tagHover">
+                            <v-chip color="secondary" class="tags-chip font-weight-medium">
+                                <a href="/tags/git/">git</a>
+                            </v-chip>
+                        </v-hover>
+                    </v-badge>
                 
                     <v-badge :value="tagHover" transition="slide-x-transition" inline content="16" >
                         <v-hover v-model="tagHover">
