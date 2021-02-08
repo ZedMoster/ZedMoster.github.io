@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            1.2 样板代码设置 | 龙|Engineer|BIM
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIM" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">样板代码设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python-Script-%E6%A0%B7%E6%9D%BF%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">Python Script 样板文件</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIM</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字" data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字" data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/">1.2 样板代码设置</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-08
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-08
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="样板代码设置"><a href="#样板代码设置" class="headerlink" title="样板代码设置"></a>样板代码设置</h2><p>复制代码文件到本地保存为 <strong>RevitApi.py</strong></p>
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> clr</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&#x27;C:\Program Files (x86)\IronPython 2.7\Lib&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> System</span><br><span class="line"><span class="keyword">from</span> System <span class="keyword">import</span> Array</span><br><span class="line"><span class="keyword">from</span> System.Collections.Generic <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&#x27;ProtoGeometry&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> Autodesk.DesignScript.Geometry <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitNodes&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> Revit</span><br><span class="line">clr.ImportExtensions(Revit.Elements)</span><br><span class="line">clr.ImportExtensions(Revit.GeometryConversion)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitServices&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> RevitServices</span><br><span class="line"><span class="keyword">from</span> RevitServices.Persistence <span class="keyword">import</span> DocumentManager</span><br><span class="line"><span class="keyword">from</span> RevitServices.Transactions <span class="keyword">import</span> TransactionManager</span><br><span class="line"></span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPI&quot;</span>)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPIUI&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Autodesk</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.DB <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.UI <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">doc = DocumentManager.Instance.CurrentDBDocument</span><br><span class="line">uiapp = DocumentManager.Instance.CurrentUIApplication</span><br><span class="line">app = uiapp.Application</span><br><span class="line">uidoc = uiapp.ActiveUIDocument</span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.EnsureInTransaction(doc) <span class="comment"># 事务开始</span></span><br><span class="line"><span class="comment">####### 逻辑代码 ########</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()    <span class="comment"># 事务结束</span></span><br><span class="line">OUT = doc</span><br></pre></td></tr></table></figure>
+<h2 id="Python-Script-样板文件"><a href="#Python-Script-样板文件" class="headerlink" title="Python Script 样板文件"></a>Python Script 样板文件</h2><p>Dynamo 2.0 开始,引入 Python 脚本模板。默认应用变量会自动添加到 <em>Python Script</em> 节点</p>
+<hr>
+<ul>
+<li>复制文件<strong>RevitBoilerplate.py</strong>到位置位于 Dynamo 安装的 <em>APPDATA</em> 位置。</li>
+</ul>
+<p>路径：<em>%appdata%\Dynamo\Dynamo Revit\{version}\</em></p>
+<p><img src=".//3.2.Setting.png" alt="Setting"></p>
+<ul>
+<li>修改文件<strong>DynamoSettings.xml</strong>中的 PythonTemplateFilePath 内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;PythonTemplateFilePath&gt;</span><br><span class="line">  C:\Users\&#123;USERNAME&#125;\AppData\Roaming\Dynamo\Dynamo Revit\&#123;version&#125;\RevitBoilerplate.py</span><br><span class="line">&lt;/PythonTemplateFilePath&gt;</span><br></pre></td></tr></table></figure>
+<p>完成上面的设置之后。就可以使用 Dynamo 愉快编写 python 脚本操控 Revit 软件！</p>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/">
+                    1.3 基本：输入和输出
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">      
+                    1.1 Dynamo's Python编辑器
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>

@@ -42,12 +42,12 @@
     
     <title>
         
-            categories | 龙&#39;Blog
+            categories | 龙|Engineer|BIM
         
     </title>
     
     
-<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙'Blog" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIM" type="application/atom+xml">
 </head>
 <body>
     <div id="app">
@@ -108,6 +108,18 @@
     
         <v-list id="sub-menu" class="font-weight-medium" dense>
             
+                
+                    <v-list-item href="/categories/dynamo/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="3" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>dynamo</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
         </v-list>    
     
 
@@ -143,9 +155,9 @@
   <v-col cols="12" md="8" align-self="end">
     <div id="site-header">
       <div id="site-title">
-        <a href="/" rel="home">龙&#39;Blog</a>
+        <a href="/" rel="home">龙|Engineer|BIM</a>
       </div>
-      <div id="site-description">职业：Engineer and Bimer. 学习：Python and BIM.</div>
+      <div id="site-description">记录学习轨迹</div>
       <div id="mobile-menu" class="d-block d-md-none">
         <v-text-field label="请输入关键字" data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
         <div class="mobile-mini-menu">
@@ -194,7 +206,10 @@
     </div>
     <div class="post-content typo">
         
-            
+            <div class="page-describe">
+                counter.categories
+            </div>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dynamo/">dynamo</a><span class="category-list-count">3</span></li></ul>
         
     </div>
 </v-card>

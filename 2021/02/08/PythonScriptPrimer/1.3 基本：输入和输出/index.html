@@ -42,7 +42,7 @@
     
     <title>
         
-            search | 龙|Engineer|BIM
+            1.3 基本：输入和输出 | 龙|Engineer|BIM
         
     </title>
     
@@ -106,21 +106,12 @@
     </v-list>
     <v-divider></v-divider>
     
-        <v-list id="sub-menu" class="font-weight-medium" dense>
-            
-                
-                    <v-list-item href="/categories/dynamo/" link>
-                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="3" >
-                            <v-hover v-model="menuHover">
-                                <v-list-item-content>
-                                    <span>dynamo</span>                              
-                                </v-list-item-content>                           
-                            </v-hover>
-                        </v-badge>
-                    </v-list-item>
-                
-            
-        </v-list>    
+        <div class="post-toc">
+            <a href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA"><span class="toc-number">1.</span> <span class="toc-text">输入和输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">输入和输出的类型</span></a></li></ol>
+            </div>
+        </div>
     
 
     <div id="footer">
@@ -201,16 +192,80 @@
 </v-row>
 
                             <v-card class="elevation-2 post-card">
-    <div class="post-header">
-        <a class="post-header-title font-weight-medium" href="/search/index.html">搜索</a>
-    </div>
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/">1.3 基本：输入和输出</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-08
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-08
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
     <div class="post-content typo">
-        
-            <v-text-field label="Search" v-model="searchPageValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchPageValue,true)"></v-text-field>
-            <v-card class="elevation-0" id="search-result"></v-card>
+        <h2 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h2><p><strong>IN</strong> 和 <strong>OUT</strong> 是 Dynamo 的 Python 节点中的重要关键字。<strong>IN</strong> 关键字告诉节点引用通过其输入发送到节点的任何数据。</p>
+<ul>
+<li>注意：后面所有的程序代码均运行在模板文件代码块内<a id="more"></a>
+
+</li>
+</ul>
+<p>通过它们的索引可以访问各种输入，例如下面的 list_of_numbers：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">input_list_of_numbers = IN[<span class="number">0</span>] <span class="comment"># 获取外部节点输入</span></span><br><span class="line">output_list_of_numbers = []   <span class="comment"># 创建空列表作为输出的内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> input_list_of_numbers:</span><br><span class="line">    new_number = number + <span class="number">1</span></span><br><span class="line">    output_list_of_numbers.append(new_number)</span><br><span class="line"></span><br><span class="line">OUT = output_list_of_numbers <span class="comment"># 输出新的列表内容（传入的值每个数字均进行 +1 操作）</span></span><br></pre></td></tr></table></figure>
+<p>在此示例中，我们最初为输出创建一个空列表。我们遍历输入列表中的每个数字，并将其进行 +1 操作后添加到我们创建的输出列表中。最后，通过 <strong>OUT</strong> 关键字输出列表。</p>
+<p>实际上，它看起来像这样：</p>
+<p><img src=".//3.3.Code.png" alt="3.3截图代码"></p>
+<h2 id="输入和输出的类型"><a href="#输入和输出的类型" class="headerlink" title="输入和输出的类型"></a>输入和输出的类型</h2><p>Dynamo 节点可以将任何种类的数据作为输入，并可以输出任何种类的数据作为输出。</p>
+<p>它能够将元素（例如 Revit 元素），抽象数字，字符串，Dynamo 几何图形以及其他所有内容作为输入。</p>
+<p>但是，将 Revit 元素输入到 Python 节点时有一个警告。</p>
+<p>Revit 元素需要进行转换类型后，才能通过 API 进行访问。</p>
+<hr>
+<p><img src=".//3.3.Totype.jpg" alt="3.3类型转换"></p>
+<p>了解 <strong>Dynamo Revit</strong> 数据类型转换</p>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/">      
+                    1.2 样板代码设置
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
         
     </div>
 </v-card>
+
+
+
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
@@ -240,6 +295,12 @@
 
 
 
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
 
 
 

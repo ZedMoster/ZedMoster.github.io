@@ -34,62 +34,6 @@
 
     
     
-    
-        <script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        
-            load: ['[tex]/mhchem'],
-        
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        
-            packages: {'[+]': ['mhchem']},
-        
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
           
 
     
@@ -257,154 +201,50 @@
 </v-row>
 
                             <v-card class="elevation-2 index-card">
-  
-    <article class="index-article">
-      
-      <div class="index-article-header">
-        <v-row no-gutters>
-          <v-col cols="auto">
-            <div class="index-article-header-date font-weight-medium">
-              2021-02-08
-            </div>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="auto">
-            
-              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
-                  </span>
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/python/ >python</a>
-                  </span>
-                
-              </v-card>
-            
-          </v-col>
-        </v-row>
-        <span>
-          
-            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
-           
-        </span> 
-        <a class="index-article-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/">1.3 基本：输入和输出</a>
-      </div>
-      
-      <div class="index-article-content">
+    <v-timeline class="timeline" dense>
+        <v-timeline-item class="timeline-header" color="secondary lighten-2">
+            <span class="timeline-title">dynamo</span>
+            <span class="timeline-subtitle">分类</span>
+        </v-timeline-item>
         
-          输入和输出IN 和 OUT 是 Dynamo 的 Python 节点中的重要关键字。IN 关键字告诉节点引用通过其输入发送到节点的任何数据。
-
-注意：后面所有的程序代码均运行在模板文件代码块内
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.08</span>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/" class="timeline-item-title">1.3 基本：输入和输出</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.08</span><br>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/" class="timeline-item-title">1.3 基本：输入和输出</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
         
-      </div>
-      
-      <div class="index-article-readmore ">
-        <v-btn text href="/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/">阅读更多</v-btn>
-      </div>
-      <v-divider></v-divider>
-    </article> 
-  
-    <article class="index-article">
-      
-      <div class="index-article-header">
-        <v-row no-gutters>
-          <v-col cols="auto">
-            <div class="index-article-header-date font-weight-medium">
-              2021-02-08
-            </div>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="auto">
-            
-              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
-                  </span>
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/python/ >python</a>
-                  </span>
-                
-              </v-card>
-            
-          </v-col>
-        </v-row>
-        <span>
-          
-            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
-           
-        </span> 
-        <a class="index-article-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/">1.2 样板代码设置</a>
-      </div>
-      
-      <div class="index-article-content">
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.08</span>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/" class="timeline-item-title">1.2 样板代码设置</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.08</span><br>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/" class="timeline-item-title">1.2 样板代码设置</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
         
-          样板代码设置复制代码文件到本地保存为 RevitApi.py
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.08</span>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/" class="timeline-item-title">1.1 Dynamo&#39;s Python编辑器</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.08</span><br>
+                    <a href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/" class="timeline-item-title">1.1 Dynamo&#39;s Python编辑器</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
         
-      </div>
-      
-      <div class="index-article-readmore ">
-        <v-btn text href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/">阅读更多</v-btn>
-      </div>
-      <v-divider></v-divider>
-    </article> 
-  
-    <article class="index-article">
-      
-      <div class="index-article-header">
-        <v-row no-gutters>
-          <v-col cols="auto">
-            <div class="index-article-header-date font-weight-medium">
-              2021-02-08
-            </div>
-          </v-col>
-          <v-spacer></v-spacer>
-          <v-col cols="auto">
-            
-              <v-card flat color="secondary" tile class="index-article-header-tag  font-weight-medium">
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/dynamo/ >dynamo</a>
-                  </span>
-                
-                  <span class="index-article-header-tag-content">
-                    <v-icon>fas fa-tag</v-icon>
-                    <a rel="tag" href = /tags/python/ >python</a>
-                  </span>
-                
-              </v-card>
-            
-          </v-col>
-        </v-row>
-        <span>
-          
-            <a class="index-article-header-category font-weight-bold" href="/categories/dynamo/">dynamo></a>
-           
-        </span> 
-        <a class="index-article-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">1.1 Dynamo&#39;s Python编辑器</a>
-      </div>
-      
-      <div class="index-article-content">
-        
-          Dynamo 的 Python 脚本编辑器Python 脚本节点随 Dynamo 一起安装，并且在许多方面，它与任何其他节点一样：可以放置在工作空间中，重命名并可以接受任意数量的输入。
-        
-      </div>
-      
-      <div class="index-article-readmore ">
-        <v-btn text href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">阅读更多</v-btn>
-      </div>
-      <v-divider></v-divider>
-    </article> 
-   
-</v-card>  
+    </v-timeline>
+</v-card>
 
          
                             <div id="mobile-footer" class="d-block d-md-none">
