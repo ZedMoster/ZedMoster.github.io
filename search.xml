@@ -78,4 +78,464 @@
         <tag>python</tag>
       </tags>
   </entry>
+  <entry>
+    <title>2.1 Revit API简介</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.1%20Revit%20API%E7%AE%80%E4%BB%8B/</url>
+    <content><![CDATA[<h2 id="Revit-API-简介"><a href="#Revit-API-简介" class="headerlink" title="Revit API 简介"></a>Revit API 简介</h2><p>Revit 自 2000 年代初以来就具有可访问的 API，可用于驱动该软件的几乎每个方面。由于 Revit 应用程序非常复杂，并且满足多专业功能需求（建筑结构，MEP 等），因此它的 API 非常大且需要一段时间才能直观地理解也就不足为奇了。</p>
+<p>我经常发现最容易想到 Revit 主要是一个数据库，我们在使用该应用程序时会不断对其进行更新。数据库存储我们的内容（其元素 ID，类别，位置等）。在此之上是 GUI，它表示 3D 空间中元素的几何形状/位置，并让我们与元素进行交互。</p>
+<p>最后，还有一点网络魔术可以使我们跨局域网/ Revit Server / BIM360 设置工作共享。 以这种方式思考 Revit 与大多数用户体验该软件的方式完全不同。实际上，当我们针对 Revit 的 API 编写脚本时，我们只是对数据库进行了一系列调用，受该 API 规则的约束。</p>
+<h2 id="版本和历史"><a href="#版本和历史" class="headerlink" title="版本和历史"></a>版本和历史</h2><p>对于 Revit 的每个发行版和子发行版，Autodesk Revit 团队都会对其 API 进行较小的更新或添加。这些更改主要与软件本身的功能更改有关。</p>
+<h2 id="Revit-SDK-amp-API-文档"><a href="#Revit-SDK-amp-API-文档" class="headerlink" title="Revit SDK &amp; API 文档"></a>Revit SDK &amp; API 文档</h2><p>软件开发套件（SDK）是软件供应商向开发人员分发有关其 API 的信息的一种常用方法。可以在找到官方的 Revit SDK 。</p>
+<p><a href="https://knowledge.autodesk.com/support/revit-products/learn-explore/caas/CloudHelp/cloudhelp/2019/ENU/Revit-Customize/files/GUID-D7E8694D-7DB3-41CA-A0F3-AF64DC2DA015-htm.html"><strong>官方 SDK 点击下载</strong></a></p>
+<p>所有 API 都需要技术文档，因此程序员可以选择它们并学习如何使用代码来驱动应用程序。Revit SDK 包含.chm 文件中的官方 API 文档以及代码示例（用 Visual Basic 和 C＃编写）。</p>
+<p>但是，本指南建议阅读 <strong>APIDocs.co</strong> 网站上的 Revit API ，这比打开 <strong>.chm</strong> 文件方便许多。</p>
+<p><a href="https://apidocs.co/"><strong>APIDocs.co</strong></a></p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.10 提示用户界面选择</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.10%20%E6%8F%90%E7%A4%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E9%80%89%E6%8B%A9/</url>
+    <content><![CDATA[<h2 id="用户选择工作流程"><a href="#用户选择工作流程" class="headerlink" title="用户选择工作流程"></a>用户选择工作流程</h2><p>有时我们可能会构建一个通用工具，要求用户选择文档中的 Revit 元素（例如，元素重新编号工具）。这将需要无限数量的可自定义过滤器，以使用户能够使用逻辑选择他们选择的元素，但是我们可以通过提示用户选择某些内容来跳过整个问题。</p>
+<h2 id="ISelectionFilter-接口"><a href="#ISelectionFilter-接口" class="headerlink" title="ISelectionFilter 接口"></a>ISelectionFilter 接口</h2><p><strong>ISelectionFilter</strong> 可以限制用户可以选择的元素种类。只需要创建一个实现该接口的新类。</p>
+<p>然后，将此类的实例作为参数提供给 <strong>PickElementsByRectangle()</strong> 方法。例如，提示用户选择 Walls 所需的代码为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 加载过滤选择的接口 ISelectionFilter</span></span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.UI.Selection <span class="keyword">import</span> ISelectionFilter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义选择过滤器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySelectionFilter</span>(<span class="params">ISelectionFilter</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">AllowElement</span>(<span class="params">self, element</span>):</span></span><br><span class="line">        <span class="keyword">return</span> element.Category.Name == <span class="string">&quot;墙&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">AllowReference</span>(<span class="params">self, element</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">selection_filter = MySelectionFilter()                            <span class="comment"># 仅选择墙</span></span><br><span class="line">walls = uidoc.Selection.PickElementsByRectangle(selection_filter) <span class="comment"># 返回框选的墙体</span></span><br><span class="line">OUT = walls</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.11 Units 单位处理</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.11%20Units%E5%8D%95%E4%BD%8D%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<h2 id="Revit-长度"><a href="#Revit-长度" class="headerlink" title="Revit 长度"></a>Revit 长度</h2><p>Revit 长度内部单位：<strong>英尺</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">detail_line = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">decimal_feet_length = detail_line.GeometryCurve.Length</span><br><span class="line">OUT = decimal_feet_length  <span class="comment"># 单位：英尺</span></span><br></pre></td></tr></table></figure>
+<p>上面代码返回的数据单位并不是我们常用的毫米单位，所以需要对数据进行单位转换。</p>
+<h3 id="单位转换（毫米）"><a href="#单位转换（毫米）" class="headerlink" title="单位转换（毫米）"></a>单位转换（毫米）</h3><p>使用 Revit 的 <strong>UnitUtils</strong> 类，且参数只能从 Revit 的 <strong>DisplayUnitType</strong> 枚举中选择值类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">detail_line = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">decimal_feet_length = detail_line.GeometryCurve.Length</span><br><span class="line">metric_length = UnitUtils.Convert(decimal_feet_length, DisplayUnitType.DUT_DECIMAL_FEET, DisplayUnitType.DUT_MILLIMETERS)  <span class="comment"># 将英尺转换为毫米</span></span><br><span class="line">OUT = metric_length  <span class="comment"># 单位：毫米</span></span><br></pre></td></tr></table></figure>
+<h2 id="角度"><a href="#角度" class="headerlink" title="角度"></a>角度</h2><h3 id="单位转换（弧度）"><a href="#单位转换（弧度）" class="headerlink" title="单位转换（弧度）"></a>单位转换（弧度）</h3><p>Revit 角度内部单位：<strong>弧度</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">angle = <span class="number">90.0</span>  <span class="comment"># 角度值</span></span><br><span class="line">radians_equivalent = UnitUtils.Convert(angle, DisplayUnitType.DUT_DECIMAL_DEGREES, DisplayUnitType.DUT_RADIANS)  <span class="comment"># 将角度转换为弧度</span></span><br><span class="line">OUT = radians_equivalent  <span class="comment"># 单位：弧度</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.12 内置类别</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.12%20%E5%86%85%E7%BD%AE%E7%B1%BB%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="BuiltInCategory"><a href="#BuiltInCategory" class="headerlink" title="BuiltInCategory"></a>BuiltInCategory</h2><p>Revit 用户界面向用户显示了许多类别，例如门，楼板和常规模型等。Revit 在内部使用更详细的类别列表，称为内置类别。内置类别的完整列表可以在 <strong>BuiltInCategory</strong> 枚举中找到-这些是固定编码，不能创建修改。</p>
+<h2 id="检索类别元素"><a href="#检索类别元素" class="headerlink" title="检索类别元素"></a>检索类别元素</h2><p>由于该列表涵盖了近 1000 个类别，因此可以帮助我门更精确地定位 Revit 元素。内置类别对于 <strong>FilteredElementCollectors</strong> 尤其有用，它使我们能够准确检索特定的元素。</p>
+<p>例如，要收集文档中的所有 <strong>面积标签</strong> ：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">area_tags = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_AreaTags).ToElements()</span><br><span class="line">OUT = area_tags</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.13 提示 TaskDialog</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.13%20%E6%8F%90%E7%A4%BATaskDialog/</url>
+    <content><![CDATA[<h2 id="创建-TaskDialog"><a href="#创建-TaskDialog" class="headerlink" title="创建 TaskDialog"></a>创建 TaskDialog</h2><p><strong>TaskDialogs</strong> 是 Revit 中的用于提供详细的用户反馈 API 类。它们可以用一行代码执行，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">TaskDialog.Show(<span class="string">&quot;Example Title&quot;</span>, <span class="string">&quot;Example Text&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告脚本是成功运行还是遇到什么错误等情况。</p>
+<p><img src=".//2.13.Taskdialog.JPG" alt="TaskDialogs"></p>
+<hr>
+<h2 id="自定义-TaskDialog"><a href="#自定义-TaskDialog" class="headerlink" title="自定义 TaskDialog"></a>自定义 TaskDialog</h2><p>TaskDialog 也可以通过类的属性对其进行编辑，以使内容更加丰富，例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">task_dialog = TaskDialog(<span class="string">&quot;Example Title&quot;</span>)</span><br><span class="line">task_dialog.CommonButtons = TaskDialogCommonButtons.Cancel | TaskDialogCommonButtons.Ok | TaskDialogCommonButtons.Close |     TaskDialogCommonButtons.No | TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.Retry | TaskDialogCommonButtons.<span class="literal">None</span></span><br><span class="line">task_dialog.FooterText = <span class="string">&quot;Example Footer Text&quot;</span></span><br><span class="line">task_dialog.MainInstruction = <span class="string">&quot;Example Main Instruction&quot;</span></span><br><span class="line">task_dialog.MainContent = <span class="string">&quot;This is the main content for this TaskDialog&quot;</span></span><br><span class="line"></span><br><span class="line">task_dialog.Show()</span><br></pre></td></tr></table></figure>
+<p>提示窗口样式</p>
+<p><img src=".//2.13.Taskdialog02.JPG" alt="TaskDialogs"></p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.2 如何阅读Revit的API文档</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.2%20%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBRevit%E7%9A%84API%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<h2 id="使用-APIDocs-Co"><a href="#使用-APIDocs-Co" class="headerlink" title="使用 APIDocs.Co"></a>使用 APIDocs.Co</h2><p>由于该网站对于希望熟悉 Revit API 的人来说是非常宝贵的资源，因此我们提供了使用该网站的简要指南。</p>
+<p><img src=".//2.2.API.png" alt="Api 文档注释"></p>
+<hr>
+<p>典型的工作流程将涉及确保已为要使用的产品选择合适版本的 API（在左窗格中），然后在 API 文档中搜索您关注的相关主题。<br>例如，如果要了解有关 <strong>FamilyInstance</strong> 类的更多信息，只需在搜索栏中搜索它，然后从自动完成选项中选择它即可。然后，有关此类的详细信息将显示在右侧的详细信息窗格中：</p>
+<ol>
+<li>这是您正在查看的页面的名称。Revit API 有超过 22,000 页，但其中的大部分都是不经常使用的！</li>
+<li>这个 <strong>&lt;&gt;</strong> 按钮将在几个流行的 Github 存储库中搜索有关该类的任何代码示例。</li>
+<li><strong>Members</strong> 将带您到显示该类的所有方法，属性，接口或构造函数的整个页面。</li>
+</ol>
+<h3 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h3><p><strong>Members:</strong> 类的成员页面只是将其所有方法，属性等收集在一个页面上。如果不确定某个类是否具有特定功能，这将非常有用。</p>
+<p><strong>Methods:</strong> 类方法是它可以运行的功能。可以将它们视为动词 <strong>do something</strong> 的实例可以做什么。例如，FamilyInstance 类型的对象具有 <strong>flipHand()</strong> 方法，可让您翻转其处理方式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 可是使用 flipHand 翻转 my_family_instance 实例对象</span></span><br><span class="line">my_family_instance.flipHand()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：对 Revit 文档所做的任何更改都必须在开始事务 <strong>Transaction</strong> .</li>
+</ul>
+<p><strong>Properties:</strong> 属性更像是类的”形容词”，可帮助您了解有关该类特定对象（即实例）的更多状态。例如，FamilyInstance 类具有一个 <strong>HandFlipped</strong> 属性，可以查询该属性的值，反应了该特定实例的是否已翻转。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这将返回True或False，具体取决于对象是否翻转</span></span><br><span class="line">is_it_handflipped = my_family_instance.HandFlipped</span><br></pre></td></tr></table></figure>
+<p><strong>Constructors:</strong></p>
+<p>API 中的构造函数实际上是在告诉您如何创建类的实例。例如，XYZ 类用于在 Revit 中定义点。我们可以使用其构造函数来创建一个新的，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的点</span></span><br><span class="line">my_point = XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：与 Dynamo 不同的是 Revit 创建的几何对象是不可见的</li>
+</ul>
+<p><strong>Enumerations:</strong></p>
+<p>这些也称为枚举，它们是硬编码的列表，通常不打算更改并且将选择限制为一组选项。交通信号灯状态的枚举应类似于：</p>
+<ul>
+<li>Red</li>
+<li>Yellow</li>
+<li>Green</li>
+</ul>
+<p>因此，用户创建的任何交通信号灯对象都需要将其交通信号灯状态设置为软件供应商定义的预写状态之一。您可以选择枚举值，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># enum枚举中的一种预定义状态</span></span><br><span class="line">traffic_light_value = TrafficLightState.Green</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Revit API 中的一些关键的枚举类型：</p>
+<ul>
+<li><strong>BuiltInCategory</strong> : 类型</li>
+<li><strong>BuiltInParameter</strong> : 参数</li>
+<li><strong>DisplayUnitType</strong> : 单位</li>
+</ul>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.3 了解 Doc, UIDoc, App, UIApp</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/</url>
+    <content><![CDATA[<h2 id="样板代码"><a href="#样板代码" class="headerlink" title="样板代码"></a>样板代码</h2><p>正如在样板代码一章中所见，Revit 样板代码通常需要设置 Revit 应用程序和文档 <strong>doc，uidoc，app，uiapp</strong>的句柄。</p>
+<p>但是为什么呢？</p>
+<h2 id="Application-and-Document"><a href="#Application-and-Document" class="headerlink" title="Application and Document"></a>Application and Document</h2><p>一开始，API 的这一部分似乎有些混乱。问题比比皆是：Revit 不能仅算出我所处的文档（即模型）吗？为什么我有一个 Document 和一个 UIDocument？为什么要引用应用程序-应用程序不是 Revit 吗？ 这些是很好的问题。幸运的是，Revit 的 API 指南为我们提供了一些答案：</p>
+<blockquote>
+<p>Revit Platform API 中的顶级对象是应用程序和文档。这些由类 Application，UIApplication，Document 和 UIDocument 表示。</p>
+<ul>
+<li><strong>应用程序对象引用一个单独的 Revit 会话</strong> 提供对文档，选项以及其他应用程序范围的数据和设置的访问。<ul>
+<li><strong>Autodesk.Revit.UI.UIApplication</strong> 提供对应用程序的 UI 级别界面的访问，包括将 RibbonPanels 添加到用户界面的能力，以及在用户界面中获取活动文档的能力。</li>
+<li><strong>Autodesk.Revit.ApplicationServices.Application</strong> 提供对所有其他应用程序级别属性的访问。</li>
+</ul>
+</li>
+<li><strong>该文档对象是代表建筑模型的单个 Revit 项目文件</strong> Revit 可以打开多个项目，并为一个项目提供多个视图。<ul>
+<li><strong>Autodesk.Revit.UI.UIDocument</strong> 提供对文档的 UI 级别界面的访问，例如选择内容以及提示用户进行选择和选择点的功能</li>
+<li><strong>Autodesk.Revit.DB.Document</strong> 提供对所有其他文档级别属性的访问</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>一次可以打开多个 Revit 文档（包括.rfa 文件），因此需要指定要定位的文档。</li>
+<li>您还可以具有多个 Revit 应用程序的运行实例，因此您需要指定要定位的应用程序。</li>
+<li>Document / UIDocument 和 Application / UIApplication 拆分是由 API 设计人员决定的。UI 类通常引用用户界面元素或需要交互的元素（例如提示用户在主 Revit 窗口中选择元素）。</li>
+</ul>
+<p>主要要知道的是，我们的样板代码中的 doc，uidoc，app 和 uiapp 句柄对于涉及编辑 Revit 文档的许多操作都是必不可少的。例如，要删除某些内容？您需要参考要从中删除内容的文档！</p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.4 展开Revit元素</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.4%20%E5%B1%95%E5%BC%80Revit%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<h2 id="About-Unwrapping"><a href="#About-Unwrapping" class="headerlink" title="About Unwrapping"></a><strong>About Unwrapping</strong></h2><p>展开元素？现在有一些奇怪的术语！简而言之：引入节点的 Revit 元素在使用前需要先’unwrapped’。 但是为了了解所有含义，我们需要对 Dynamo 的最初开发方式有一点了解。</p>
+<hr>
+<h3 id="回顾历史-🏰"><a href="#回顾历史-🏰" class="headerlink" title="回顾历史 🏰"></a><strong>回顾历史 🏰</strong></h3><p>Dynamo 最初被认为是 <strong>Ian Keough</strong> 的开源爱好项目。Dynamo 最初仅用于与 Revit 集成，但它还需要 Revit API 本身不提供的扩展功能，例如可视化抽象几何。</p>
+<p>围绕此问题的方法是，Ian 的新应用程序使用其自己的等效类型实质上封装 Revit API 中的大约 1700 个类-这些类型的功能可以根据 Dynamo 的要求进行构建。</p>
+<p>因此，Revit 的类与 Dynamo 的等效类之间存在细微且不可察觉的差异（此类类称为“包装器类”）。</p>
+<hr>
+<p>如果我们检查 Revit 对象的类名称及其等效的 Dynamo 对象，则可以看到。例如，让我们看一下 Level 对象：</p>
+<ul>
+<li>在 Revit 的 API 中，Level 类的完全限定名称为：<strong>Autodesk.Revit.DB.Level</strong></li>
+<li>在 Dynamo 中，Level 类的完全限定名称为：<strong>Revit.Elements.Level</strong></li>
+</ul>
+<h2 id="编码-ToRevitType"><a href="#编码-ToRevitType" class="headerlink" title="编码 ToRevitType"></a>编码 ToRevitType</h2><p>通常，Dynamo 会完成这两个工作之间的所有工作，即不可见地包裹和展开包裹元素。除了编写代码时，我们不必担心具体的技术细节。</p>
+<p>在编写 IronPython 脚本时，我们可能会将元素作为输入提供给 Python 脚本节点。在我们解开它们之前，这些元素仍将是 Dynamo 的”包装”类型。在我们这样做之前，Revit 的类型和 Dynamo 的等效类型不能很好地配合使用。</p>
+<p>展开元素非常简单，就像这样：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 UnwrapElement() 方法</span></span><br><span class="line"><span class="comment"># 将 Dynamo 元素类型转换为 Revit 元素类型</span></span><br><span class="line">revitElements = UnwrapElement(IN[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>注意：</strong> 未能使用 UnwrapElement 本身不会引发错误，但是在读取属性或使用包装类型的方法时会出错。</li>
+</ul>
+<hr>
+<p>无需总是解开元素 **UnwrapElement()**，仅当它们从 Python Script 节点外部传入时使用即可。</p>
+<p>例如，当使用 FilteredElementCollector 收集元素时，我们将绕过 Dynamo 并直接与 Revit 的 API 获取数据，该 API 将 Revit 的本身类型返回给我们，所以不需要解开元素！</p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.5 过滤器 FilteredElementCollector</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/</url>
+    <content><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>处理模型的前提是获取到相应类型的元素。Revit 的 <strong>FilteredElementCollector</strong> 允许您使用一组自定义的过滤规则，在 Revit 文档的数据库中快速搜索元素。您可以将搜索过滤器和修饰符堆叠在一起，从而使您可以进行几乎无限次的自定义搜索。</p>
+<h2 id="举个简单的例子"><a href="#举个简单的例子" class="headerlink" title="举个简单的例子"></a>举个简单的例子</h2><p><em>FilteredElementCollectors</em> 将返回 <em>Element</em> 或 <em>ElementIds</em> 的列表。</p>
+<p>快速组合在一起非常简单。例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">all_furniture = FilteredElementCollector(doc)             <span class="comment"># 创建过滤器</span></span><br><span class="line">all_furniture.OfCategory(BuiltInCategory.OST_Furniture)   <span class="comment"># 过滤家具（包含：实例和类型）</span></span><br><span class="line">all_furniture.WhereElementIsNotElementType()              <span class="comment"># 过滤项目中家具实例</span></span><br><span class="line">all_furniture.ToElements()                                <span class="comment"># 结果转换为Element对象列表</span></span><br><span class="line">OUT = all_furniture                                       <span class="comment"># 输出对象</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>这段代码首先创建一个新的 <em>FilteredElementCollector</em> 实例，该实例将 Revit 文档作为其构造函数中的参数。</li>
+<li>第 4 行添加了一个进一步的过滤器-我们不想在返回的元素中仅包含家具族类型，而仅是实例。</li>
+<li>在第 5 行中，我们指定我们希望 FilteredElementCollector 返回实际的 Revit 元素。</li>
+<li>最后，第 6 行使用 <em>OUT</em> 从节点输出收集的元素。</li>
+</ol>
+</blockquote>
+<p>也可以将上述脚本压缩为一行，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">all_furniture = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Furniture).WhereElementIsNotElementType().ToElements()</span><br><span class="line">OUT = all_furniture</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这两个脚本将返回完全相同的对象，因此可以选择使用哪个版本:较长的版本还是较冗长的版本</li>
+<li>建议使用下面这种简洁</li>
+</ul>
+<h2 id="过滤器使用指南"><a href="#过滤器使用指南" class="headerlink" title="过滤器使用指南"></a><strong>过滤器使用指南</strong></h2><p><strong>关于如何为元素组装基本过滤器的分步指南：</strong></p>
+<ol>
+<li><p><strong>知道您要过滤的内容</strong></p>
+<ul>
+<li><p>如果这是 Revit 类别的元素，请在 <strong>BuiltInCategory</strong> 枚举中找到等效的 <strong>BuiltInCategory</strong> 类型。</p>
+</li>
+<li><p>否则，如果您正在寻找特定 API 类的元素，则可以使用 <strong>.OfClass()</strong> 过滤器，并在 <em>Class</em> 名称中添加一个参数类别。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>您是否要返回元素实例或其类型</strong></p>
+<ul>
+<li>例如，您要查找文档中的所有 <strong>TextNotes</strong> 实例还是所有 <strong>TextNoteTypes</strong> 族类型<ul>
+<li>如果需要实例，请使用 <strong>.WhereElementIsNotElementType()</strong> 过滤器</li>
+<li>如果需要类型，请使用 <strong>.WhereElementIsElementType()</strong> 过滤器</li>
+<li>如果您两者都想要，则不要使用过滤器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>是否要返回 Revit 元素或元素的 ID</strong></p>
+<ul>
+<li>使用 <strong>.ToElements()</strong> 或 <strong>.ToElementIds()</strong> 完成您的 <strong>FilteredElementCollector</strong> 查询。</li>
+</ul>
+</li>
+</ol>
+<h2 id="进阶筛选"><a href="#进阶筛选" class="headerlink" title="进阶筛选"></a>进阶筛选</h2><p>上面是构建基本 <strong>FilteredElementCollector</strong> 的大致指南。但是，您可以构建更多自定义过滤器：</p>
+<ul>
+<li><p>您可以使用 <strong>ElementLevelFilter</strong> 来过滤某个级别上托管的元素，或者使用 <strong>ElementWorksetFilter</strong> 来仅过滤特定工作集上的元素。</p>
+</li>
+<li><p>您可以建立自定义评估规则。是否仅在指定参数值或 Height 参数大于 3000mm 的元素中寻找元素？这些都是可以轻松实现的。</p>
+</li>
+<li><p>此页面只是刮擦 <strong>FilteredElementCollectors</strong> 的表面。</p>
+</li>
+</ul>
+<hr>
+<h3 id="快速过滤器-QuickFilters"><a href="#快速过滤器-QuickFilters" class="headerlink" title="快速过滤器-QuickFilters"></a>快速过滤器-QuickFilters</h3><ul>
+<li><strong>ElementCategoryFilter</strong> ：与输入类别 ID 匹配的元素；<ul>
+<li>快捷方式：<strong>OfCategory</strong></li>
+</ul>
+</li>
+<li><strong>ElementClassFilter</strong>：与输入运行时类匹配的元素；<ul>
+<li>快捷方式：<strong>OfClass</strong></li>
+</ul>
+</li>
+<li><strong>ElementIsElementTypeFilter</strong>：是“元素类型”（符号）的元素；<ul>
+<li>快捷方式：<strong>WhereElementIsElementType / WhereElementIsNotElementType</strong></li>
+</ul>
+</li>
+<li><strong>ElementOwnerViewFilter</strong>：特定于视图的元素；<ul>
+<li>快捷方式：<strong>OwnedByView / WhereElementIsViewIndependent</strong></li>
+</ul>
+</li>
+<li><strong>ElementDesignOptionFilter</strong>：特定设计选项中的元素；<ul>
+<li>快捷方式：<strong>ContainedInDesignOption</strong></li>
+</ul>
+</li>
+<li><strong>ElementIsCurveDrivenFilter</strong>：曲线驱动的元素；<ul>
+<li>快捷方式：<strong>WhereElementIsCurveDriven</strong></li>
+</ul>
+</li>
+<li><strong>ElementStructuralTypeFilter</strong>：匹配给定结构类型的元素</li>
+<li><strong>FamilySymbolFilter</strong>：特定家庭的符号</li>
+<li><strong>ExclusionFilter</strong>：除输入到过滤器中的元素 ID 之外的所有元素</li>
+<li><strong>BoundingBoxIntersectsFilter</strong>：具有与给定轮廓相交的边界框的元素</li>
+<li><strong>BoundingBoxIsInsideFilter</strong>：在给定轮廓内具有边界框的元素</li>
+<li><strong>BoundingBoxContainsPointFilter</strong>：具有包含给定点的边界框的元素</li>
+</ul>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.6 几何(Geometry)转换</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/</url>
+    <content><![CDATA[<h2 id="Revit-几何图形和-Dynamo-几何图形"><a href="#Revit-几何图形和-Dynamo-几何图形" class="headerlink" title="Revit 几何图形和 Dynamo 几何图形"></a>Revit 几何图形和 Dynamo 几何图形</h2><p>Dynamo 具有与 Revit 并行的类库。意味着需要使用特殊的转换方法来使两者之间进行转换实现数据交互。前面章节也提到过需要展开对象。</p>
+<h2 id="转换方式"><a href="#转换方式" class="headerlink" title="转换方式"></a>转换方式</h2><p>您可以使用 Dynamo API 的转换方法轻松地在 Dynamo 和 Revit 几何类型之间进行切换:</p>
+<ul>
+<li><strong>ToProtoType()</strong></li>
+<li><strong>ToDSType()</strong></li>
+<li><strong>ToLine()</strong></li>
+<li><strong>ToPoint()</strong></li>
+<li><strong>ToVector()</strong></li>
+<li><strong>ToXyz()</strong></li>
+</ul>
+<h2 id="Points"><a href="#Points" class="headerlink" title="Points"></a>Points</h2><p>Revit 点在 3D 空间中由其 X，Y 和 Z 坐标定义。创建方法：先创建点的对象 <strong>Autodesk.Revit.DB.XYZ</strong>，在创建 Revit 点 <strong>Autodesk.Revit.DB.Point.Create</strong> 方法创建，该方法需要传入点的对象。</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">XYZ revit_xyz = <span class="keyword">new</span> Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment">// 创建点对象</span></span><br><span class="line">Point revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz) <span class="comment">// 创建点</span></span><br></pre></td></tr></table></figure>
+<p>要创建 Dynamo 点，我们需要使用 Designscript 库，该库是 Dynamo 的一部分。Dynamo 点的类型为 <strong>Autodesk.DesignScript.Geometry.Point</strong> 如果从 Python 节点输出以下 dynamo_point，它将立即显示在 Dynamo 的 3D 背景预览中。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dynamo_point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment"># 创建点</span></span><br><span class="line">OUT = dynamo_point  <span class="comment"># 输出点视图将显示</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：即使我们在这里创建 Revit 对象，在这种情况下，也不需要将它们包装在 <strong>Transaction</strong> 事务中。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">revit_xyz = Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment"># Revit XYZ</span></span><br><span class="line"><span class="comment"># 使用XYZ对象创建点</span></span><br><span class="line">revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz)</span><br><span class="line">OUT = revit_xyz, revit_point</span><br></pre></td></tr></table></figure>
+<p>我们可以从 Python 脚本节点输出 XYZ 和 Point，但是除非将它们转换为 Dynamo 类型，否则它们将在 Dynamo 几何预览中不可见： <em>ToPoint() ToProtoType()</em></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">revit_xyz = Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz)</span><br><span class="line">OUT = revit_xyz.ToPoint(), revit_point.ToProtoType()</span><br></pre></td></tr></table></figure>
+<h2 id="Lines-Curves"><a href="#Lines-Curves" class="headerlink" title="Lines / Curves"></a>Lines / Curves</h2><p>​​ 先看一下 Dynamo 类：Dynamo 有两个<strong>线型</strong>几何类。了解他们之间存在区别。</p>
+<ul>
+<li><strong>Autodesk.DesignScript.Geometry.Line</strong> 线段，具有起点和终点。</li>
+<li><strong>Autodesk.DesignScript.Geometry.Curve</strong> 复杂的曲面或 UV 坐标。Dynamo 的 <strong>Curve</strong> 类包含 <strong>Line</strong> 。</li>
+</ul>
+<p>为了使这个示例简单，我们将在下面显示如何创建一条简单的 Dynamo 行。首先，我们将创建 Dynamo 点，然后将其用作定义直线的起点和终点。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dynamo_point_1 = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)   <span class="comment"># 创建起点</span></span><br><span class="line">dynamo_point_2 = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>) <span class="comment"># 创建终点</span></span><br><span class="line">dynamo_line = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(dynamo_point_1, dynamo_point_2) <span class="comment"># 传入参数起点和终点创建Dynamo线段</span></span><br><span class="line">OUT = dynamo_line <span class="comment"># 返回线段</span></span><br></pre></td></tr></table></figure>
+<p>下面尝试使用 python 脚本节点输出，并使用 <strong>ToProtoType()</strong> 将其转换为 Dynamo 几何类型，否则在 Dynamo 几何预览中将不可见。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">revit_xyz_1 = XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">revit_xyz_2 = XYZ(<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>)</span><br><span class="line">revit_line = Line.CreateBound(revit_xyz_1, revit_xyz_2)</span><br><span class="line">OUT = revit_line.ToProtoType()</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.7 访问图元参数 Parameters</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/</url>
+    <content><![CDATA[<h2 id="族、族类型、族实例之间的关系"><a href="#族、族类型、族实例之间的关系" class="headerlink" title="族、族类型、族实例之间的关系"></a>族、族类型、族实例之间的关系</h2><p>Revit 的族系使用族类型和族实例之间的层次关系。API 中并行存在相同的关系：</p>
+<ul>
+<li><strong>族实例</strong> 是 Revit 的 <strong>FamilyInstance</strong> 类的实例。例如：项目中创建的门、窗</li>
+<li><strong>族类型</strong> 是 Revit 的 <strong>FamilyType</strong> 类的实例。例如：防火门 FM1822 类型</li>
+</ul>
+<hr>
+<p>族实例参数通过 <strong>FamilyInstance</strong> 对象访问，而族类型的参数通过实例的 <strong>FamilyType</strong> 类型对象访问。</p>
+<blockquote>
+<p>包含关系：<strong>FamilyInstance -&gt; FamilyType -&gt; Family</strong></p>
+</blockquote>
+<p>每个<em>FamilyInstance</em>都是通过<em>FamilyType</em>创建。同样，每个<em>FamilyType</em>将由项目文档中的加载的<em>Family</em>族文件定义。</p>
+<p>下面演示如何从<em>FamilyInstance</em>向上找到<em>FamilyType</em>类型，再通过<em>FamilyType</em>找到<em>Family</em>族：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])         <span class="comment"># 展开dynamo图元得到Revit族实例</span></span><br><span class="line">family_type_id = family_instance.GetTypeId()   <span class="comment"># 获取族实例的类型Id</span></span><br><span class="line">family_type = doc.GetElement(family_type_id)   <span class="comment"># 通过类型Id获取族类型</span></span><br><span class="line">family = family_type.Family                    <span class="comment"># 通过类型获取族Family</span></span><br><span class="line">OUT = family_instance, family_type, family     <span class="comment"># 输出 [族实例, 族类型, 族]</span></span><br></pre></td></tr></table></figure>
+<p>反方向查找：<em>Family</em>对象通常包含多个的<em>FamilyType</em>对象之间存在多对一的关系。同样，有许多放置相同<em>FamilyType</em>的<em>FamilyInstances</em>。要获得一个家庭的所有 family_type，我们可以使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">family = UnwrapElement(IN[<span class="number">0</span>])                                    <span class="comment"># 展开dynamo图元得到Revit族</span></span><br><span class="line">family_type_ids = family.GetFamilySymbolIds()                    <span class="comment"># 获取族包含的所有类型Id</span></span><br><span class="line">family_types = [doc.GetElement(<span class="built_in">id</span>) <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> family_type_ids]    <span class="comment"># 获取所有的族类型存再列表中</span></span><br><span class="line">OUT = family_types                                               <span class="comment"># 输出族类型列表</span></span><br></pre></td></tr></table></figure>
+<p>寻找特定类型的所有<em>FamilyInstance</em>对象是那么简单-我们首先需要创建一个 <strong>FamilyInstanceFilter</strong> 使用所需<em>FamilyType</em>的 ID。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 展开dynamo图元得到Revit族</span></span><br><span class="line">family = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 获取族包含的所有类型Id</span></span><br><span class="line">family_type_ids = family.GetFamilySymbolIds()</span><br><span class="line"><span class="comment"># 创建族实例列表</span></span><br><span class="line">family_instances = []</span><br><span class="line"><span class="comment"># 寻找类型对应的实例</span></span><br><span class="line"><span class="keyword">for</span> family_type_id <span class="keyword">in</span> family_type_ids:</span><br><span class="line">    <span class="comment"># 创建指定类型的过滤器</span></span><br><span class="line">    family_instance_filter = FamilyInstanceFilter(doc, family_type_id)</span><br><span class="line">    <span class="comment"># 获取文档中所有类型的实例对象</span></span><br><span class="line">    elements = FilteredElementCollector(doc).WherePasses(family_instance_filter).ToElements()</span><br><span class="line">    <span class="comment"># 将实例对象添加到列表</span></span><br><span class="line">    family_instances.append(elements)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">OUT = family_instances</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="族实例和族类型参数"><a href="#族实例和族类型参数" class="headerlink" title="族实例和族类型参数"></a>族实例和族类型参数</h2><h3 id="获取族实例参数"><a href="#获取族实例参数" class="headerlink" title="获取族实例参数"></a>获取族实例参数</h3><p>如果要与传递 Dynamo 元素到节点中与 Revit 元素进行交互，则需要将其展开。展开后，可以访问特定参数将所有元素实例参数的列表作为 Parameter 对象返回，可以通过其 Element.Parameters 属性访问，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])            <span class="comment"># 族实例对象</span></span><br><span class="line">instance_parameters = family_instance.Parameters  <span class="comment"># 实例包含的所有参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取族类型参数"><a href="#获取族类型参数" class="headerlink" title="获取族类型参数"></a>获取族类型参数</h3><p>类型参数需要通过元素的族类型来访问。如果将<em>FamilyInstance</em>作为输入，则首先需要获取元素的 FamilyType 对象，例如 <strong>GetTypeId()</strong> 此方法返回元素的族类型的<em>ElementId</em>。然后，我们可以使用 <strong>doc.GetElement()</strong> 方法返回元素的<em>FamilyType</em>对象。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])                      <span class="comment"># 族实例对象</span></span><br><span class="line">family_type = doc.GetElement(family_instance.GetTypeId())   <span class="comment"># 通过实例获取类型</span></span><br><span class="line">type_parameters = family_type.Parameters                    <span class="comment"># 类型包含的所有参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="访问指定参数"><a href="#访问指定参数" class="headerlink" title="访问指定参数"></a>访问指定参数</h3><p>对于获取 FamilyInstance 或 FamilyType 的参数，有以下方法来访问特定参数：</p>
+<ul>
+<li><strong>Element.LookupParameter()</strong></li>
+<li><strong>Element.get_Parameter()</strong></li>
+</ul>
+<p>这两种方法本质上都是相同的。它们返回一个 <strong>Parameter</strong> 对象。选择 Revit 门实例对象：</p>
+<p><img src=".//2.7.parameter.png" alt="A simple example; reading the Mark value of an element."></p>
+<h3 id="获取参数值"><a href="#获取参数值" class="headerlink" title="获取参数值"></a>获取参数值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">paratemer = input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>如果输出原始<em>Parameter</em>对象，它将显示为<strong>Autodesk.Revit.DB.Parameter</strong>，为了获取参数 <strong>Parameter</strong> 对象的值，您需要使用 Parameter 类的对其进行转换。</p>
+<p>依据判断值的类型进行取值即可：</p>
+<ul>
+<li><strong>AsDouble()</strong></li>
+<li><strong>AsElementId()</strong></li>
+<li><strong>AsInteger()</strong></li>
+<li><strong>AsString()</strong></li>
+</ul>
+<hr>
+<ul>
+<li><strong>AsValueString()</strong></li>
+</ul>
+<p>使用上面的方法以适当的数据类型返回值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">value = input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>).AsValueString() <span class="comment"># value = 2400</span></span><br></pre></td></tr></table></figure>
+<p>此工作流程等效于在 Dynamo 中使用 GetParameterValueByName 节点。</p>
+<h3 id="设置参数值"><a href="#设置参数值" class="headerlink" title="设置参数值"></a>设置参数值</h3><p>同样需要获取到<em>Parameter</em>对象，使用 <strong>Set()</strong> 方法进行赋值即可,当然更改参数的这个操作修改了文件的内容，所以应该开启 <strong>Transaction</strong> 事务。</p>
+<p><img src=".//2.7.parameterAsValueString.png" alt="AsValueString">。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">TransactionManager.Instance.EnsureInTransaction(doc) <span class="comment"># 事务开始</span></span><br><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>).Set(<span class="number">2000</span>)</span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()    <span class="comment"># 事务结束</span></span><br></pre></td></tr></table></figure>
+<p>Set 值对象的类型包括：</p>
+<ul>
+<li><strong>Set(float)</strong></li>
+<li><strong>Set(int)</strong></li>
+<li><strong>Set(ElementId)</strong></li>
+<li><strong>Set(str)</strong></li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.8 处理事务 Transactions</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.8%20%E5%A4%84%E7%90%86%E4%BA%8B%E5%8A%A1%20Transactions/</url>
+    <content><![CDATA[<h2 id="Revit-是数据库"><a href="#Revit-是数据库" class="headerlink" title="Revit 是数据库"></a>Revit 是数据库</h2><p>需要对该数据库的更改进行仔细的排序，需要对过程进行管理和检查（针对架构的有效性以及针对 Revit API 设计的合法性）。所有这些都由 Revit 的本机 <strong>Transaction API</strong> 处理。</p>
+<h2 id="Dynamo’s-TransactionManager"><a href="#Dynamo’s-TransactionManager" class="headerlink" title="Dynamo’s TransactionManager"></a>Dynamo’s TransactionManager</h2><p>当直接为 Revit API 编码时，我们可以通过使用代码实例化 <strong>Transaction</strong> 类的新对象并调用其 <strong>Start()</strong> 方法来简单地启动新事务。但是，在 Dynamo 中，我们通常使用下面这种方式进行处理。</p>
+<p><em>TransactionManager</em> 是 Dynamo API 的一部分，该 API 处理 Dynamo 应用程序中对 Revit 文档数据库所做的更改：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">TransactionManager.Instance.EnsureInTransaction(doc)    <span class="comment"># 为 doc 文档开启事务</span></span><br><span class="line"><span class="comment"># 增、删、改操作Revit文档</span></span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()       <span class="comment"># 提交更新</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>简而言之，主体代码都写在样板代码的这两行代码之间即可。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2.9 批处理文档</title>
+    <url>/2021/02/09/PythonScriptPrimer/2.9%20%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E6%A1%A3/</url>
+    <content><![CDATA[<h1 id><a href="#" class="headerlink" title></a></h1><p>批处理 Revit 文件 Revit API 的最强大功能之一就是能够以自动方式打开，关闭，编辑和保存文档。最重要的是，我们可以“无头”实现这一目标，这意味着无需任何 GUI 组件即可打开 Revit 文档的数据库。一般而言，以这种方式处理文档可能比用户这样做快 20 到 30 倍-这意味着构建涉及快速批处理许多文件时可以使用这种方式。</p>
+<ul>
+<li><strong>批处理步骤</strong>：<ul>
+<li>根据目标文档的文件路径，创建 <strong>Revit FilePath</strong> 对象的列表，遍历此文档路径列表</li>
+<li>使用 Revit API 的 <strong>Open()</strong> 方法打开文件并为此打开的文档创建一个句柄</li>
+<li>通过其句柄打开针对我们新打开的文档的处理</li>
+<li>根据需求进行 API 调用，具体取决于要执行的具体操作</li>
+<li>关闭打开文档。如果需要保存更改，可将文档进行另存。</li>
+</ul>
+</li>
+</ul>
+<h2 id="python-节点代码"><a href="#python-节点代码" class="headerlink" title="python 节点代码"></a>python 节点代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input_paths = IN[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 设置打开方式</span></span><br><span class="line">open_options = OpenOptions()</span><br><span class="line">report = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> input_paths:</span><br><span class="line">    filepath = FilePath(path)</span><br><span class="line">    <span class="comment"># 打开文件</span></span><br><span class="line">    family_doc = app.OpenDocumentFile(filepath, open_options)</span><br><span class="line">    dimensions = FilteredElementCollector(family_doc).OfCategory(BuiltInCategory.OST_Dimensions).WhereElementIsNotElementType().ToElements()</span><br><span class="line">    number_dimensions = <span class="built_in">len</span>(dimensions)</span><br><span class="line">    report.append(<span class="string">&quot;File &#123;&#125; contains &#123;&#125; dimensions&quot;</span>.<span class="built_in">format</span>(path, number_dimensions))</span><br><span class="line">    <span class="comment"># 关闭文件</span></span><br><span class="line">    family_doc.Close(<span class="literal">False</span>)</span><br><span class="line">OUT = report <span class="comment">#Outputting the report we generated</span></span><br></pre></td></tr></table></figure>
+<h2 id="dynamo-节点"><a href="#dynamo-节点" class="headerlink" title="dynamo 节点"></a>dynamo 节点</h2><p><img src=".//2.9.files.jpg" alt="example"></p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
 </search>

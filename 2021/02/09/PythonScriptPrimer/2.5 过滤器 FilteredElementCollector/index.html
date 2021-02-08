@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            2.5 过滤器 FilteredElementCollector | 龙|Engineer|BIMer
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIMer" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BE%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">举个简单的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="toc-number">3.</span> <span class="toc-text">过滤器使用指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E7%AD%9B%E9%80%89"><span class="toc-number">4.</span> <span class="toc-text">进阶筛选</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E8%BF%87%E6%BB%A4%E5%99%A8-QuickFilters"><span class="toc-number">4.1.</span> <span class="toc-text">快速过滤器-QuickFilters</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIMer</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/">2.5 过滤器 FilteredElementCollector</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>处理模型的前提是获取到相应类型的元素。Revit 的 <strong>FilteredElementCollector</strong> 允许您使用一组自定义的过滤规则，在 Revit 文档的数据库中快速搜索元素。您可以将搜索过滤器和修饰符堆叠在一起，从而使您可以进行几乎无限次的自定义搜索。</p>
+<h2 id="举个简单的例子"><a href="#举个简单的例子" class="headerlink" title="举个简单的例子"></a>举个简单的例子</h2><p><em>FilteredElementCollectors</em> 将返回 <em>Element</em> 或 <em>ElementIds</em> 的列表。</p>
+<p>快速组合在一起非常简单。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">all_furniture = FilteredElementCollector(doc)             <span class="comment"># 创建过滤器</span></span><br><span class="line">all_furniture.OfCategory(BuiltInCategory.OST_Furniture)   <span class="comment"># 过滤家具（包含：实例和类型）</span></span><br><span class="line">all_furniture.WhereElementIsNotElementType()              <span class="comment"># 过滤项目中家具实例</span></span><br><span class="line">all_furniture.ToElements()                                <span class="comment"># 结果转换为Element对象列表</span></span><br><span class="line">OUT = all_furniture                                       <span class="comment"># 输出对象</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<ol>
+<li>这段代码首先创建一个新的 <em>FilteredElementCollector</em> 实例，该实例将 Revit 文档作为其构造函数中的参数。</li>
+<li>第 4 行添加了一个进一步的过滤器-我们不想在返回的元素中仅包含家具族类型，而仅是实例。</li>
+<li>在第 5 行中，我们指定我们希望 FilteredElementCollector 返回实际的 Revit 元素。</li>
+<li>最后，第 6 行使用 <em>OUT</em> 从节点输出收集的元素。</li>
+</ol>
+</blockquote>
+<p>也可以将上述脚本压缩为一行，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">all_furniture = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Furniture).WhereElementIsNotElementType().ToElements()</span><br><span class="line">OUT = all_furniture</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这两个脚本将返回完全相同的对象，因此可以选择使用哪个版本:较长的版本还是较冗长的版本</li>
+<li>建议使用下面这种简洁</li>
+</ul>
+<h2 id="过滤器使用指南"><a href="#过滤器使用指南" class="headerlink" title="过滤器使用指南"></a><strong>过滤器使用指南</strong></h2><p><strong>关于如何为元素组装基本过滤器的分步指南：</strong></p>
+<ol>
+<li><p><strong>知道您要过滤的内容</strong></p>
+<ul>
+<li><p>如果这是 Revit 类别的元素，请在 <strong>BuiltInCategory</strong> 枚举中找到等效的 <strong>BuiltInCategory</strong> 类型。</p>
+</li>
+<li><p>否则，如果您正在寻找特定 API 类的元素，则可以使用 <strong>.OfClass()</strong> 过滤器，并在 <em>Class</em> 名称中添加一个参数类别。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>您是否要返回元素实例或其类型</strong></p>
+<ul>
+<li>例如，您要查找文档中的所有 <strong>TextNotes</strong> 实例还是所有 <strong>TextNoteTypes</strong> 族类型<ul>
+<li>如果需要实例，请使用 <strong>.WhereElementIsNotElementType()</strong> 过滤器</li>
+<li>如果需要类型，请使用 <strong>.WhereElementIsElementType()</strong> 过滤器</li>
+<li>如果您两者都想要，则不要使用过滤器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>是否要返回 Revit 元素或元素的 ID</strong></p>
+<ul>
+<li>使用 <strong>.ToElements()</strong> 或 <strong>.ToElementIds()</strong> 完成您的 <strong>FilteredElementCollector</strong> 查询。</li>
+</ul>
+</li>
+</ol>
+<h2 id="进阶筛选"><a href="#进阶筛选" class="headerlink" title="进阶筛选"></a>进阶筛选</h2><p>上面是构建基本 <strong>FilteredElementCollector</strong> 的大致指南。但是，您可以构建更多自定义过滤器：</p>
+<ul>
+<li><p>您可以使用 <strong>ElementLevelFilter</strong> 来过滤某个级别上托管的元素，或者使用 <strong>ElementWorksetFilter</strong> 来仅过滤特定工作集上的元素。</p>
+</li>
+<li><p>您可以建立自定义评估规则。是否仅在指定参数值或 Height 参数大于 3000mm 的元素中寻找元素？这些都是可以轻松实现的。</p>
+</li>
+<li><p>此页面只是刮擦 <strong>FilteredElementCollectors</strong> 的表面。</p>
+</li>
+</ul>
+<hr>
+<h3 id="快速过滤器-QuickFilters"><a href="#快速过滤器-QuickFilters" class="headerlink" title="快速过滤器-QuickFilters"></a>快速过滤器-QuickFilters</h3><ul>
+<li><strong>ElementCategoryFilter</strong> ：与输入类别 ID 匹配的元素；<ul>
+<li>快捷方式：<strong>OfCategory</strong></li>
+</ul>
+</li>
+<li><strong>ElementClassFilter</strong>：与输入运行时类匹配的元素；<ul>
+<li>快捷方式：<strong>OfClass</strong></li>
+</ul>
+</li>
+<li><strong>ElementIsElementTypeFilter</strong>：是“元素类型”（符号）的元素；<ul>
+<li>快捷方式：<strong>WhereElementIsElementType / WhereElementIsNotElementType</strong></li>
+</ul>
+</li>
+<li><strong>ElementOwnerViewFilter</strong>：特定于视图的元素；<ul>
+<li>快捷方式：<strong>OwnedByView / WhereElementIsViewIndependent</strong></li>
+</ul>
+</li>
+<li><strong>ElementDesignOptionFilter</strong>：特定设计选项中的元素；<ul>
+<li>快捷方式：<strong>ContainedInDesignOption</strong></li>
+</ul>
+</li>
+<li><strong>ElementIsCurveDrivenFilter</strong>：曲线驱动的元素；<ul>
+<li>快捷方式：<strong>WhereElementIsCurveDriven</strong></li>
+</ul>
+</li>
+<li><strong>ElementStructuralTypeFilter</strong>：匹配给定结构类型的元素</li>
+<li><strong>FamilySymbolFilter</strong>：特定家庭的符号</li>
+<li><strong>ExclusionFilter</strong>：除输入到过滤器中的元素 ID 之外的所有元素</li>
+<li><strong>BoundingBoxIntersectsFilter</strong>：具有与给定轮廓相交的边界框的元素</li>
+<li><strong>BoundingBoxIsInsideFilter</strong>：在给定轮廓内具有边界框的元素</li>
+<li><strong>BoundingBoxContainsPointFilter</strong>：具有包含给定点的边界框的元素</li>
+</ul>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/">
+                    2.6 几何(Geometry)转换
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/">      
+                    2.3 了解 Doc, UIDoc, App, UIApp
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>

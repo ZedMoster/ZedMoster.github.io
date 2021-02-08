@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            2.3 了解 Doc, UIDoc, App, UIApp | 龙|Engineer|BIMer
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIMer" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">样板代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Application-and-Document"><span class="toc-number">2.</span> <span class="toc-text">Application and Document</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIMer</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.3%20%E4%BA%86%E8%A7%A3%20Doc,%20UIDoc,%20App,%20UIApp/">2.3 了解 Doc, UIDoc, App, UIApp</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="样板代码"><a href="#样板代码" class="headerlink" title="样板代码"></a>样板代码</h2><p>正如在样板代码一章中所见，Revit 样板代码通常需要设置 Revit 应用程序和文档 <strong>doc，uidoc，app，uiapp</strong>的句柄。</p>
+<p>但是为什么呢？</p>
+<h2 id="Application-and-Document"><a href="#Application-and-Document" class="headerlink" title="Application and Document"></a>Application and Document</h2><p>一开始，API 的这一部分似乎有些混乱。问题比比皆是：Revit 不能仅算出我所处的文档（即模型）吗？为什么我有一个 Document 和一个 UIDocument？为什么要引用应用程序-应用程序不是 Revit 吗？ 这些是很好的问题。幸运的是，Revit 的 API 指南为我们提供了一些答案：</p>
+<blockquote>
+<p>Revit Platform API 中的顶级对象是应用程序和文档。这些由类 Application，UIApplication，Document 和 UIDocument 表示。</p>
+<ul>
+<li><strong>应用程序对象引用一个单独的 Revit 会话</strong> 提供对文档，选项以及其他应用程序范围的数据和设置的访问。<ul>
+<li><strong>Autodesk.Revit.UI.UIApplication</strong> 提供对应用程序的 UI 级别界面的访问，包括将 RibbonPanels 添加到用户界面的能力，以及在用户界面中获取活动文档的能力。</li>
+<li><strong>Autodesk.Revit.ApplicationServices.Application</strong> 提供对所有其他应用程序级别属性的访问。</li>
+</ul>
+</li>
+<li><strong>该文档对象是代表建筑模型的单个 Revit 项目文件</strong> Revit 可以打开多个项目，并为一个项目提供多个视图。<ul>
+<li><strong>Autodesk.Revit.UI.UIDocument</strong> 提供对文档的 UI 级别界面的访问，例如选择内容以及提示用户进行选择和选择点的功能</li>
+<li><strong>Autodesk.Revit.DB.Document</strong> 提供对所有其他文档级别属性的访问</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>一次可以打开多个 Revit 文档（包括.rfa 文件），因此需要指定要定位的文档。</li>
+<li>您还可以具有多个 Revit 应用程序的运行实例，因此您需要指定要定位的应用程序。</li>
+<li>Document / UIDocument 和 Application / UIApplication 拆分是由 API 设计人员决定的。UI 类通常引用用户界面元素或需要交互的元素（例如提示用户在主 Revit 窗口中选择元素）。</li>
+</ul>
+<p>主要要知道的是，我们的样板代码中的 doc，uidoc，app 和 uiapp 句柄对于涉及编辑 Revit 文档的许多操作都是必不可少的。例如，要删除某些内容？您需要参考要从中删除内容的文档！</p>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/">
+                    2.5 过滤器 FilteredElementCollector
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.4%20%E5%B1%95%E5%BC%80Revit%E5%85%83%E7%B4%A0/">      
+                    2.4 展开Revit元素
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>

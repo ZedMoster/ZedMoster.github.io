@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            2.2 如何阅读Revit的API文档 | 龙|Engineer|BIMer
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIMer" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/09/PythonScriptPrimer/2.2%20%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBRevit%E7%9A%84API%E6%96%87%E6%A1%A3/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-APIDocs-Co"><span class="toc-number">1.</span> <span class="toc-text">使用 APIDocs.Co</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象编程</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIMer</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.2%20%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BBRevit%E7%9A%84API%E6%96%87%E6%A1%A3/">2.2 如何阅读Revit的API文档</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="使用-APIDocs-Co"><a href="#使用-APIDocs-Co" class="headerlink" title="使用 APIDocs.Co"></a>使用 APIDocs.Co</h2><p>由于该网站对于希望熟悉 Revit API 的人来说是非常宝贵的资源，因此我们提供了使用该网站的简要指南。</p>
+<p><img src=".//2.2.API.png" alt="Api 文档注释"></p>
+<hr>
+<p>典型的工作流程将涉及确保已为要使用的产品选择合适版本的 API（在左窗格中），然后在 API 文档中搜索您关注的相关主题。<br>例如，如果要了解有关 <strong>FamilyInstance</strong> 类的更多信息，只需在搜索栏中搜索它，然后从自动完成选项中选择它即可。然后，有关此类的详细信息将显示在右侧的详细信息窗格中：</p>
+<ol>
+<li>这是您正在查看的页面的名称。Revit API 有超过 22,000 页，但其中的大部分都是不经常使用的！</li>
+<li>这个 <strong>&lt;&gt;</strong> 按钮将在几个流行的 Github 存储库中搜索有关该类的任何代码示例。</li>
+<li><strong>Members</strong> 将带您到显示该类的所有方法，属性，接口或构造函数的整个页面。</li>
+</ol>
+<h3 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h3><p><strong>Members:</strong> 类的成员页面只是将其所有方法，属性等收集在一个页面上。如果不确定某个类是否具有特定功能，这将非常有用。</p>
+<p><strong>Methods:</strong> 类方法是它可以运行的功能。可以将它们视为动词 <strong>do something</strong> 的实例可以做什么。例如，FamilyInstance 类型的对象具有 <strong>flipHand()</strong> 方法，可让您翻转其处理方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可是使用 flipHand 翻转 my_family_instance 实例对象</span></span><br><span class="line">my_family_instance.flipHand()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：对 Revit 文档所做的任何更改都必须在开始事务 <strong>Transaction</strong> .</li>
+</ul>
+<p><strong>Properties:</strong> 属性更像是类的”形容词”，可帮助您了解有关该类特定对象（即实例）的更多状态。例如，FamilyInstance 类具有一个 <strong>HandFlipped</strong> 属性，可以查询该属性的值，反应了该特定实例的是否已翻转。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这将返回True或False，具体取决于对象是否翻转</span></span><br><span class="line">is_it_handflipped = my_family_instance.HandFlipped</span><br></pre></td></tr></table></figure>
+<p><strong>Constructors:</strong></p>
+<p>API 中的构造函数实际上是在告诉您如何创建类的实例。例如，XYZ 类用于在 Revit 中定义点。我们可以使用其构造函数来创建一个新的，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个新的点</span></span><br><span class="line">my_point = XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：与 Dynamo 不同的是 Revit 创建的几何对象是不可见的</li>
+</ul>
+<p><strong>Enumerations:</strong></p>
+<p>这些也称为枚举，它们是硬编码的列表，通常不打算更改并且将选择限制为一组选项。交通信号灯状态的枚举应类似于：</p>
+<ul>
+<li>Red</li>
+<li>Yellow</li>
+<li>Green</li>
+</ul>
+<p>因此，用户创建的任何交通信号灯对象都需要将其交通信号灯状态设置为软件供应商定义的预写状态之一。您可以选择枚举值，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># enum枚举中的一种预定义状态</span></span><br><span class="line">traffic_light_value = TrafficLightState.Green</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Revit API 中的一些关键的枚举类型：</p>
+<ul>
+<li><strong>BuiltInCategory</strong> : 类型</li>
+<li><strong>BuiltInParameter</strong> : 参数</li>
+<li><strong>DisplayUnitType</strong> : 单位</li>
+</ul>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/PythonScriptPrimer/2.4%20%E5%B1%95%E5%BC%80Revit%E5%85%83%E7%B4%A0/">
+                    2.4 展开Revit元素
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.1%20Revit%20API%E7%AE%80%E4%BB%8B/">      
+                    2.1 Revit API简介
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>

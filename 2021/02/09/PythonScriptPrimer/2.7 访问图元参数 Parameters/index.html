@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            2.7 访问图元参数 Parameters | 龙|Engineer|BIMer
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIMer" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8F%E3%80%81%E6%97%8F%E7%B1%BB%E5%9E%8B%E3%80%81%E6%97%8F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">族、族类型、族实例之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8F%E5%AE%9E%E4%BE%8B%E5%92%8C%E6%97%8F%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">族实例和族类型参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%97%8F%E5%AE%9E%E4%BE%8B%E5%8F%82%E6%95%B0"><span class="toc-number">2.1.</span> <span class="toc-text">获取族实例参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%97%8F%E7%B1%BB%E5%9E%8B%E5%8F%82%E6%95%B0"><span class="toc-number">2.2.</span> <span class="toc-text">获取族类型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E6%8C%87%E5%AE%9A%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">访问指定参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC"><span class="toc-number">2.4.</span> <span class="toc-text">获取参数值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%8F%82%E6%95%B0%E5%80%BC"><span class="toc-number">2.5.</span> <span class="toc-text">设置参数值</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIMer</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/">2.7 访问图元参数 Parameters</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="族、族类型、族实例之间的关系"><a href="#族、族类型、族实例之间的关系" class="headerlink" title="族、族类型、族实例之间的关系"></a>族、族类型、族实例之间的关系</h2><p>Revit 的族系使用族类型和族实例之间的层次关系。API 中并行存在相同的关系：</p>
+<ul>
+<li><strong>族实例</strong> 是 Revit 的 <strong>FamilyInstance</strong> 类的实例。例如：项目中创建的门、窗</li>
+<li><strong>族类型</strong> 是 Revit 的 <strong>FamilyType</strong> 类的实例。例如：防火门 FM1822 类型</li>
+</ul>
+<hr>
+<p>族实例参数通过 <strong>FamilyInstance</strong> 对象访问，而族类型的参数通过实例的 <strong>FamilyType</strong> 类型对象访问。</p>
+<blockquote>
+<p>包含关系：<strong>FamilyInstance -&gt; FamilyType -&gt; Family</strong></p>
+</blockquote>
+<p>每个<em>FamilyInstance</em>都是通过<em>FamilyType</em>创建。同样，每个<em>FamilyType</em>将由项目文档中的加载的<em>Family</em>族文件定义。</p>
+<p>下面演示如何从<em>FamilyInstance</em>向上找到<em>FamilyType</em>类型，再通过<em>FamilyType</em>找到<em>Family</em>族：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])         <span class="comment"># 展开dynamo图元得到Revit族实例</span></span><br><span class="line">family_type_id = family_instance.GetTypeId()   <span class="comment"># 获取族实例的类型Id</span></span><br><span class="line">family_type = doc.GetElement(family_type_id)   <span class="comment"># 通过类型Id获取族类型</span></span><br><span class="line">family = family_type.Family                    <span class="comment"># 通过类型获取族Family</span></span><br><span class="line">OUT = family_instance, family_type, family     <span class="comment"># 输出 [族实例, 族类型, 族]</span></span><br></pre></td></tr></table></figure>
+<p>反方向查找：<em>Family</em>对象通常包含多个的<em>FamilyType</em>对象之间存在多对一的关系。同样，有许多放置相同<em>FamilyType</em>的<em>FamilyInstances</em>。要获得一个家庭的所有 family_type，我们可以使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">family = UnwrapElement(IN[<span class="number">0</span>])                                    <span class="comment"># 展开dynamo图元得到Revit族</span></span><br><span class="line">family_type_ids = family.GetFamilySymbolIds()                    <span class="comment"># 获取族包含的所有类型Id</span></span><br><span class="line">family_types = [doc.GetElement(<span class="built_in">id</span>) <span class="keyword">for</span> <span class="built_in">id</span> <span class="keyword">in</span> family_type_ids]    <span class="comment"># 获取所有的族类型存再列表中</span></span><br><span class="line">OUT = family_types                                               <span class="comment"># 输出族类型列表</span></span><br></pre></td></tr></table></figure>
+<p>寻找特定类型的所有<em>FamilyInstance</em>对象是那么简单-我们首先需要创建一个 <strong>FamilyInstanceFilter</strong> 使用所需<em>FamilyType</em>的 ID。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 展开dynamo图元得到Revit族</span></span><br><span class="line">family = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># 获取族包含的所有类型Id</span></span><br><span class="line">family_type_ids = family.GetFamilySymbolIds()</span><br><span class="line"><span class="comment"># 创建族实例列表</span></span><br><span class="line">family_instances = []</span><br><span class="line"><span class="comment"># 寻找类型对应的实例</span></span><br><span class="line"><span class="keyword">for</span> family_type_id <span class="keyword">in</span> family_type_ids:</span><br><span class="line">    <span class="comment"># 创建指定类型的过滤器</span></span><br><span class="line">    family_instance_filter = FamilyInstanceFilter(doc, family_type_id)</span><br><span class="line">    <span class="comment"># 获取文档中所有类型的实例对象</span></span><br><span class="line">    elements = FilteredElementCollector(doc).WherePasses(family_instance_filter).ToElements()</span><br><span class="line">    <span class="comment"># 将实例对象添加到列表</span></span><br><span class="line">    family_instances.append(elements)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">OUT = family_instances</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="族实例和族类型参数"><a href="#族实例和族类型参数" class="headerlink" title="族实例和族类型参数"></a>族实例和族类型参数</h2><h3 id="获取族实例参数"><a href="#获取族实例参数" class="headerlink" title="获取族实例参数"></a>获取族实例参数</h3><p>如果要与传递 Dynamo 元素到节点中与 Revit 元素进行交互，则需要将其展开。展开后，可以访问特定参数将所有元素实例参数的列表作为 Parameter 对象返回，可以通过其 Element.Parameters 属性访问，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])            <span class="comment"># 族实例对象</span></span><br><span class="line">instance_parameters = family_instance.Parameters  <span class="comment"># 实例包含的所有参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取族类型参数"><a href="#获取族类型参数" class="headerlink" title="获取族类型参数"></a>获取族类型参数</h3><p>类型参数需要通过元素的族类型来访问。如果将<em>FamilyInstance</em>作为输入，则首先需要获取元素的 FamilyType 对象，例如 <strong>GetTypeId()</strong> 此方法返回元素的族类型的<em>ElementId</em>。然后，我们可以使用 <strong>doc.GetElement()</strong> 方法返回元素的<em>FamilyType</em>对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">family_instance = UnwrapElement(IN[<span class="number">0</span>])                      <span class="comment"># 族实例对象</span></span><br><span class="line">family_type = doc.GetElement(family_instance.GetTypeId())   <span class="comment"># 通过实例获取类型</span></span><br><span class="line">type_parameters = family_type.Parameters                    <span class="comment"># 类型包含的所有参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="访问指定参数"><a href="#访问指定参数" class="headerlink" title="访问指定参数"></a>访问指定参数</h3><p>对于获取 FamilyInstance 或 FamilyType 的参数，有以下方法来访问特定参数：</p>
+<ul>
+<li><strong>Element.LookupParameter()</strong></li>
+<li><strong>Element.get_Parameter()</strong></li>
+</ul>
+<p>这两种方法本质上都是相同的。它们返回一个 <strong>Parameter</strong> 对象。选择 Revit 门实例对象：</p>
+<p><img src=".//2.7.parameter.png" alt="A simple example; reading the Mark value of an element."></p>
+<h3 id="获取参数值"><a href="#获取参数值" class="headerlink" title="获取参数值"></a>获取参数值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">paratemer = input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>如果输出原始<em>Parameter</em>对象，它将显示为<strong>Autodesk.Revit.DB.Parameter</strong>，为了获取参数 <strong>Parameter</strong> 对象的值，您需要使用 Parameter 类的对其进行转换。</p>
+<p>依据判断值的类型进行取值即可：</p>
+<ul>
+<li><strong>AsDouble()</strong></li>
+<li><strong>AsElementId()</strong></li>
+<li><strong>AsInteger()</strong></li>
+<li><strong>AsString()</strong></li>
+</ul>
+<hr>
+<ul>
+<li><strong>AsValueString()</strong></li>
+</ul>
+<p>使用上面的方法以适当的数据类型返回值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">value = input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>).AsValueString() <span class="comment"># value = 2400</span></span><br></pre></td></tr></table></figure>
+<p>此工作流程等效于在 Dynamo 中使用 GetParameterValueByName 节点。</p>
+<h3 id="设置参数值"><a href="#设置参数值" class="headerlink" title="设置参数值"></a>设置参数值</h3><p>同样需要获取到<em>Parameter</em>对象，使用 <strong>Set()</strong> 方法进行赋值即可,当然更改参数的这个操作修改了文件的内容，所以应该开启 <strong>Transaction</strong> 事务。</p>
+<p><img src=".//2.7.parameterAsValueString.png" alt="AsValueString">。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TransactionManager.Instance.EnsureInTransaction(doc) <span class="comment"># 事务开始</span></span><br><span class="line">input_element = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">input_element.LookupParameter(<span class="string">&quot;顶高度&quot;</span>).Set(<span class="number">2000</span>)</span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()    <span class="comment"># 事务结束</span></span><br></pre></td></tr></table></figure>
+<p>Set 值对象的类型包括：</p>
+<ul>
+<li><strong>Set(float)</strong></li>
+<li><strong>Set(int)</strong></li>
+<li><strong>Set(ElementId)</strong></li>
+<li><strong>Set(str)</strong></li>
+</ul>
+<hr>
+
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/PythonScriptPrimer/2.8%20%E5%A4%84%E7%90%86%E4%BA%8B%E5%8A%A1%20Transactions/">
+                    2.8 处理事务 Transactions
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/">      
+                    2.6 几何(Geometry)转换
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>

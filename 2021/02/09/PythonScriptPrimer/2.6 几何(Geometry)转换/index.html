@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+     
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.min.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="/css/main.css">
+
+    
+    
+
+
+
+
+
+
+
+    
+    
+          
+
+    
+    
+    
+    
+    <title>
+        
+            2.6 几何(Geometry)转换 | 龙|Engineer|BIMer
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.3.0"><link rel="alternate" href="/atom.xml" title="龙|Engineer|BIMer" type="application/atom+xml">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-content id="page">
+                <v-container fluid>
+                    <v-row>
+                        <v-col cols="2" class="d-none d-md-block">
+                            <div id="sidebar" class="float-right">
+    <a href="/" rel="home">
+        <v-avatar size=96>
+            <img id="logo" src="/images/avatar.webp">     
+        </v-avatar> 
+    </a>
+    <v-divider></v-divider>
+    <div class="mini-menu">
+        <v-btn icon href="/">
+            <v-icon>home</v-icon>
+        </v-btn>
+        <v-btn icon href="/categories/">
+            <v-icon>folder</v-icon>
+        </v-btn>
+        <v-btn icon href="/tags/">
+            <v-icon>bookmark</v-icon>
+        </v-btn>
+        <v-btn icon @click="SetNightMode">
+            <v-icon>{{ nightMode }}</v-icon>
+        </v-btn>
+    </div>
+    <v-list id="main-menu" class="font-weight-bold" flat>
+        
+            
+            <v-list-item href="/archives/" link>
+            <v-list-item-icon><v-icon>archive</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                归档
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="/about/" link>
+            <v-list-item-icon><v-icon>account_circle</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                关于
+            </v-list-item-content>
+            </v-list-item>
+        
+            
+            <v-list-item href="https://space.bilibili.com/81888284" link>
+            <v-list-item-icon><v-icon>rss_feed</v-icon></v-list-item-icon>
+            <v-list-item-content>
+                Bilibili
+            </v-list-item-content>
+            </v-list-item>
+        
+    </v-list>
+    <v-divider></v-divider>
+    
+        <div class="post-toc">
+            <a href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/" class="toc-header">文章目录</a>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Revit-%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2%E5%92%8C-Dynamo-%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="toc-number">1.</span> <span class="toc-text">Revit 几何图形和 Dynamo 几何图形</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">转换方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Points"><span class="toc-number">3.</span> <span class="toc-text">Points</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lines-Curves"><span class="toc-number">4.</span> <span class="toc-text">Lines &#x2F; Curves</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div id="footer">
+        <div class="footer-social">
+            
+                
+                <v-btn icon href="https://github.com/ZedMoster" target="_blank">
+                    <v-icon>fab fa-github</v-icon>
+                </v-btn>
+            
+        </div>
+        <v-divider></v-divider>
+        <div class="footer-content">
+            
+                <span id="busuanzi_container_site_uv" style="display: none;"> 
+                    总访客量 <span id="busuanzi_value_site_uv"></span>
+                </span>
+                <br>
+            
+            <span>Powered by <a target="_blank" rel="noopener" href="https://github.com/ZedMoster/">ZedMoster</a></span><br>
+            <span>
+                &copy; 2020 - 2021 
+                龙
+            </span>
+        </div>
+    </div>
+</div>
+
+                        </v-col>
+                        <v-col cols="12" md="10">
+                            <v-row>
+  <v-col cols="12" md="8" align-self="end">
+    <div id="site-header">
+      <div id="site-title">
+        <a href="/" rel="home">龙|Engineer|BIMer</a>
+      </div>
+      <div id="site-description">记录学习轨迹</div>
+      <div id="mobile-menu" class="d-block d-md-none">
+        <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-inner-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+        <div class="mobile-mini-menu">
+          <v-btn icon href="/">
+              <v-icon>home</v-icon>
+          </v-btn>
+          <v-btn icon href="/categories/">
+              <v-icon>folder</v-icon>
+          </v-btn>
+          <v-btn icon href="/tags/">
+              <v-icon>bookmark</v-icon>
+          </v-btn>
+          <v-btn icon @click="SetNightMode">
+              <v-icon>{{ nightMode }}</v-icon>
+          </v-btn>
+          
+            
+            <v-btn icon href="/archives/">
+              <v-icon>archive</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="/about/">
+              <v-icon>account_circle</v-icon>
+            </v-btn>
+          
+            
+            <v-btn icon href="https://space.bilibili.com/81888284">
+              <v-icon>rss_feed</v-icon>
+            </v-btn>
+          
+        </div>
+      </div>    
+    </div>
+  </v-col>  
+  <v-col cols="4" align-self="end" class="d-none d-md-block">
+    <v-col align-self="end">
+      <v-text-field label="请输入关键字...." data-src="search.xml" v-model="searchHeaderValue" prepend-icon="search" clearable clear-icon="clear" @keydown.enter="EnterSearch(searchHeaderValue,true)"></v-text-field>
+    </v-col> 
+  </v-col>
+</v-row>
+
+                            <v-card class="elevation-2 post-card">
+    
+    
+        <div class="post-header">
+  <a class="post-header-title font-weight-medium" href="/2021/02/09/PythonScriptPrimer/2.6%20%E5%87%A0%E4%BD%95(Geometry)%E8%BD%AC%E6%8D%A2/">2.6 几何(Geometry)转换</a>
+  <div class="post-header-meta">   
+    <span>
+      <v-icon color="">event</v-icon>
+      发布于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">event_available</v-icon>
+      更新于:&nbsp;2021-02-09
+    </span>
+    <span>
+      <v-icon color="">folder</v-icon>
+      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
+    </span>
+    
+    <span>
+      <v-icon color="">visibility</v-icon>
+      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+    </span>
+    
+  </div>
+</div>
+
+    
+    
+    
+    
+    <div class="post-content typo">
+        <h2 id="Revit-几何图形和-Dynamo-几何图形"><a href="#Revit-几何图形和-Dynamo-几何图形" class="headerlink" title="Revit 几何图形和 Dynamo 几何图形"></a>Revit 几何图形和 Dynamo 几何图形</h2><p>Dynamo 具有与 Revit 并行的类库。意味着需要使用特殊的转换方法来使两者之间进行转换实现数据交互。前面章节也提到过需要展开对象。</p>
+<h2 id="转换方式"><a href="#转换方式" class="headerlink" title="转换方式"></a>转换方式</h2><p>您可以使用 Dynamo API 的转换方法轻松地在 Dynamo 和 Revit 几何类型之间进行切换:</p>
+<ul>
+<li><strong>ToProtoType()</strong></li>
+<li><strong>ToDSType()</strong></li>
+<li><strong>ToLine()</strong></li>
+<li><strong>ToPoint()</strong></li>
+<li><strong>ToVector()</strong></li>
+<li><strong>ToXyz()</strong></li>
+</ul>
+<h2 id="Points"><a href="#Points" class="headerlink" title="Points"></a>Points</h2><p>Revit 点在 3D 空间中由其 X，Y 和 Z 坐标定义。创建方法：先创建点的对象 <strong>Autodesk.Revit.DB.XYZ</strong>，在创建 Revit 点 <strong>Autodesk.Revit.DB.Point.Create</strong> 方法创建，该方法需要传入点的对象。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">XYZ revit_xyz = <span class="keyword">new</span> Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment">// 创建点对象</span></span><br><span class="line">Point revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz) <span class="comment">// 创建点</span></span><br></pre></td></tr></table></figure>
+<p>要创建 Dynamo 点，我们需要使用 Designscript 库，该库是 Dynamo 的一部分。Dynamo 点的类型为 <strong>Autodesk.DesignScript.Geometry.Point</strong> 如果从 Python 节点输出以下 dynamo_point，它将立即显示在 Dynamo 的 3D 背景预览中。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dynamo_point = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment"># 创建点</span></span><br><span class="line">OUT = dynamo_point  <span class="comment"># 输出点视图将显示</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意：即使我们在这里创建 Revit 对象，在这种情况下，也不需要将它们包装在 <strong>Transaction</strong> 事务中。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">revit_xyz = Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>) <span class="comment"># Revit XYZ</span></span><br><span class="line"><span class="comment"># 使用XYZ对象创建点</span></span><br><span class="line">revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz)</span><br><span class="line">OUT = revit_xyz, revit_point</span><br></pre></td></tr></table></figure>
+<p>我们可以从 Python 脚本节点输出 XYZ 和 Point，但是除非将它们转换为 Dynamo 类型，否则它们将在 Dynamo 几何预览中不可见： <em>ToPoint() ToProtoType()</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">revit_xyz = Autodesk.Revit.DB.XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">revit_point = Autodesk.Revit.DB.Point.Create(revit_xyz)</span><br><span class="line">OUT = revit_xyz.ToPoint(), revit_point.ToProtoType()</span><br></pre></td></tr></table></figure>
+<h2 id="Lines-Curves"><a href="#Lines-Curves" class="headerlink" title="Lines / Curves"></a>Lines / Curves</h2><p>​​ 先看一下 Dynamo 类：Dynamo 有两个<strong>线型</strong>几何类。了解他们之间存在区别。</p>
+<ul>
+<li><strong>Autodesk.DesignScript.Geometry.Line</strong> 线段，具有起点和终点。</li>
+<li><strong>Autodesk.DesignScript.Geometry.Curve</strong> 复杂的曲面或 UV 坐标。Dynamo 的 <strong>Curve</strong> 类包含 <strong>Line</strong> 。</li>
+</ul>
+<p>为了使这个示例简单，我们将在下面显示如何创建一条简单的 Dynamo 行。首先，我们将创建 Dynamo 点，然后将其用作定义直线的起点和终点。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dynamo_point_1 = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)   <span class="comment"># 创建起点</span></span><br><span class="line">dynamo_point_2 = Autodesk.DesignScript.Geometry.Point.ByCoordinates(<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>) <span class="comment"># 创建终点</span></span><br><span class="line">dynamo_line = Autodesk.DesignScript.Geometry.Line.ByStartPointEndPoint(dynamo_point_1, dynamo_point_2) <span class="comment"># 传入参数起点和终点创建Dynamo线段</span></span><br><span class="line">OUT = dynamo_line <span class="comment"># 返回线段</span></span><br></pre></td></tr></table></figure>
+<p>下面尝试使用 python 脚本节点输出，并使用 <strong>ToProtoType()</strong> 将其转换为 Dynamo 几何类型，否则在 Dynamo 几何预览中将不可见。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">revit_xyz_1 = XYZ(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">revit_xyz_2 = XYZ(<span class="number">10</span>,<span class="number">10</span>,<span class="number">0</span>)</span><br><span class="line">revit_line = Line.CreateBound(revit_xyz_1, revit_xyz_2)</span><br><span class="line">OUT = revit_line.ToProtoType()</span><br></pre></td></tr></table></figure>
+    </div>
+    <!--文末结束语-->
+    
+        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
+    
+    <!--页脚广告-->
+    
+    <v-divider></v-divider>
+    
+    <div class="post-nav">             
+        
+            <div class="post-nav-button float-left">
+                <v-icon>chevron_left</v-icon>
+                <a class="font-weight-bold text-left" href="/2021/02/09/PythonScriptPrimer/2.7%20%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%85%83%E5%8F%82%E6%95%B0%20Parameters/">
+                    2.7 访问图元参数 Parameters
+                </a>
+            </div>
+              
+          
+            <div class="post-nav-button float-right">
+                <a class="font-weight-bold text-right" href="/2021/02/09/PythonScriptPrimer/2.5%20%E8%BF%87%E6%BB%A4%E5%99%A8%20FilteredElementCollector/">      
+                    2.5 过滤器 FilteredElementCollector
+                </a>
+                <v-icon>chevron_right</v-icon>
+            </div>
+        
+    </div>
+</v-card>
+
+
+
+        
+                            <div id="mobile-footer" class="d-block d-md-none">
+                                <v-divider></v-divider>
+                                <div id="mobile-footer-content">
+                                    <span>Theme: <a target="_blank" rel="noopener" href="https://github.com/kb1000fx/hexo-theme-insulin">Insulin</a> &nbsp; Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a></span><br>
+                                    <span> &copy; 2020 - 2021 龙</span>
+                                </div>
+                            </div>                   
+                        </v-col>                                            
+                    </v-row>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.5.2/base64.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+
+</body>
+</html>
