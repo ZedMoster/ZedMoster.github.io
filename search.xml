@@ -34,25 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title>03.安装 pip 命令</title>
-    <url>/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="安装-pip-或-pip3"><a href="#安装-pip-或-pip3" class="headerlink" title="安装 pip 或 pip3"></a>安装 pip 或 pip3</h2><a id="more"></a>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装python2 版本 pip</span></span><br><span class="line">sudo apt install python-pip</span><br><span class="line"><span class="comment"># 安装python3 版本 pip3</span></span><br><span class="line">sudo apt install python3-pip</span><br></pre></td></tr></table></figure>
-<h2 id="仅使用-python3-时使用-pip-代替-pip3"><a href="#仅使用-python3-时使用-pip-代替-pip3" class="headerlink" title="仅使用 python3 时使用 pip 代替 pip3"></a>仅使用 python3 时使用 pip 代替 pip3</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="comment"># 添加替换的内容</span></span><br><span class="line">alias pip=<span class="string">&quot;pip3&quot;</span></span><br><span class="line">alias python=<span class="string">&quot;python3&quot;</span></span><br><span class="line"><span class="comment"># 保存后更新配置</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
-<h2 id="更换-pip-源"><a href="#更换-pip-源" class="headerlink" title="更换 pip 源"></a>更换 pip 源</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开创建文件夹</span></span><br><span class="line">mkdir ~/.config/pip/</span><br><span class="line"><span class="comment"># 打开文件目录</span></span><br><span class="line">cd ~/.config/pip/</span><br><span class="line"><span class="comment"># 创建并打开文件</span></span><br><span class="line">vim pip.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制内容并保存</span></span><br><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>
-<hr>
-<h2 id="安装卸载软件"><a href="#安装卸载软件" class="headerlink" title="安装卸载软件"></a>安装卸载软件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo apt install ipython3</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt remove ipython3</span><br></pre></td></tr></table></figure>
-<h2 id="安装-scrapy-后创建软连接"><a href="#安装-scrapy-后创建软连接" class="headerlink" title="安装 scrapy 后创建软连接"></a>安装 scrapy 后创建软连接</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确定安装位置</span></span><br><span class="line">/usr/local/python3/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 建立软链接</span></span><br><span class="line">ln -s /usr/local/python3/<span class="built_in">bin</span>/scrapy /usr/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 删除软链接</span></span><br><span class="line">rm -rf scrapy</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>linux</category>
-      </categories>
-      <tags>
-        <tag>linux</tag>
-        <tag>Shell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>02.Ubuntu 镜像使用帮助</title>
     <url>/2021/02/09/LinuxPrimer/02.%E6%9B%B4%E6%8D%A2%E5%AE%89%E8%A3%85%E6%BA%90/</url>
     <content><![CDATA[<p>Ubuntu 的软件源配置文件是 <strong>/etc/apt/sources.list</strong></p>
@@ -66,6 +47,25 @@
 
 <h2 id="软件源镜像-18-04-LTS"><a href="#软件源镜像-18-04-LTS" class="headerlink" title="软件源镜像:18.04 LTS"></a>软件源镜像:18.04 LTS</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bionic-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
 <h2 id="软件源镜像-20-04-LTS"><a href="#软件源镜像-20-04-LTS" class="headerlink" title="软件源镜像:20.04 LTS"></a>软件源镜像:20.04 LTS</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>linux</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+        <tag>Shell</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>03.安装 pip 命令</title>
+    <url>/2021/02/09/LinuxPrimer/03.%E5%AE%89%E8%A3%85pip%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="安装-pip-或-pip3"><a href="#安装-pip-或-pip3" class="headerlink" title="安装 pip 或 pip3"></a>安装 pip 或 pip3</h2><a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装python2 版本 pip</span></span><br><span class="line">sudo apt install python-pip</span><br><span class="line"><span class="comment"># 安装python3 版本 pip3</span></span><br><span class="line">sudo apt install python3-pip</span><br></pre></td></tr></table></figure>
+<h2 id="仅使用-python3-时使用-pip-代替-pip3"><a href="#仅使用-python3-时使用-pip-代替-pip3" class="headerlink" title="仅使用 python3 时使用 pip 代替 pip3"></a>仅使用 python3 时使用 pip 代替 pip3</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="comment"># 添加替换的内容</span></span><br><span class="line">alias pip=<span class="string">&quot;pip3&quot;</span></span><br><span class="line">alias python=<span class="string">&quot;python3&quot;</span></span><br><span class="line"><span class="comment"># 保存后更新配置</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="更换-pip-源"><a href="#更换-pip-源" class="headerlink" title="更换 pip 源"></a>更换 pip 源</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开创建文件夹</span></span><br><span class="line">mkdir ~/.config/pip/</span><br><span class="line"><span class="comment"># 打开文件目录</span></span><br><span class="line">cd ~/.config/pip/</span><br><span class="line"><span class="comment"># 创建并打开文件</span></span><br><span class="line">vim pip.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制内容并保存</span></span><br><span class="line">[<span class="keyword">global</span>]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple/</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="安装卸载软件"><a href="#安装卸载软件" class="headerlink" title="安装卸载软件"></a>安装卸载软件</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">sudo apt install ipython3</span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt remove ipython3</span><br></pre></td></tr></table></figure>
+<h2 id="安装-scrapy-后创建软连接"><a href="#安装-scrapy-后创建软连接" class="headerlink" title="安装 scrapy 后创建软连接"></a>安装 scrapy 后创建软连接</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 确定安装位置</span></span><br><span class="line">/usr/local/python3/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 建立软链接</span></span><br><span class="line">ln -s /usr/local/python3/<span class="built_in">bin</span>/scrapy /usr/<span class="built_in">bin</span>/scrapy</span><br><span class="line"><span class="comment"># 删除软链接</span></span><br><span class="line">rm -rf scrapy</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>linux</category>
       </categories>
