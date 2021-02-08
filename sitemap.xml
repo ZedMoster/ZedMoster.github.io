@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zedmoster.github.io/about/index.html</loc>
+    
+    <lastmod>2021-02-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zedmoster.github.io/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/</loc>
+    
+    <lastmod>2021-02-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zedmoster.github.io/search/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA.html</loc>
     
     <lastmod>2021-02-08</lastmod>
     
@@ -16,6 +30,13 @@
   </url>
   
   <url>
+    <loc>https://zedmoster.github.io/search/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE.html</loc>
+    
+    <lastmod>2021-02-08</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zedmoster.github.io/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/</loc>
     
     <lastmod>2021-02-08</lastmod>
@@ -23,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://zedmoster.github.io/search/index.html</loc>
+    <loc>https://zedmoster.github.io/search/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8.html</loc>
     
     <lastmod>2021-02-08</lastmod>
     
   </url>
   
   <url>
-    <loc>https://zedmoster.github.io/about/index.html</loc>
+    <loc>https://zedmoster.github.io/search/index.html</loc>
     
     <lastmod>2021-02-08</lastmod>
     

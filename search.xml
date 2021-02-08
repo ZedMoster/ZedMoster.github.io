@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>1.1 Dynamo&#39;s Python编辑器</title>
+    <url>/2021/02/08/PythonScriptPrimer/1.1%20Dynamo&#39;s%20Python%E7%BC%96%E8%BE%91%E5%99%A8/</url>
+    <content><![CDATA[<h2 id="Dynamo-的-Python-脚本编辑器"><a href="#Dynamo-的-Python-脚本编辑器" class="headerlink" title="Dynamo 的 Python 脚本编辑器"></a>Dynamo 的 Python 脚本编辑器</h2><p><em>Python</em> 脚本节点随 <em>Dynamo</em> 一起安装，并且在许多方面，它与任何其他节点一样：可以放置在工作空间中，重命名并可以接受任意数量的输入。</p>
+<a id="more"></a>
+
+<p>但是，与其他节点不同，如果右键单击并选择 <strong>Edit..</strong> 则会出现一个脚本编辑窗口(双击节点)，如下所示：</p>
+<p><img src=".//3.1.edit.png" alt="默认情况下Dynamo将使用上面的代码填充编辑器"></p>
+<p>在此窗口中，您可以编写 <strong>IronPython</strong> 脚本，这些脚本将作为 Dynamo 定义的一部分直接执行。要保存脚本，请单击 <strong>保存更改</strong> 按钮，然后保存其中的 Dynamo 定义。否则，请单击“取消”按钮以放弃所做的任何更改。</p>
+<h2 id="如何编写程序"><a href="#如何编写程序" class="headerlink" title="如何编写程序"></a>如何编写程序</h2><p>使用 <em>Dynamo</em> 编写 <em>Python</em> 代码！后面会学习设置样板代码，引用 <strong>Revit Api</strong>。</p>
+<p><a href="https://primer.dynamobim.org/">dynamo 手册</a></p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1.2 样板代码设置</title>
+    <url>/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="样板代码设置"><a href="#样板代码设置" class="headerlink" title="样板代码设置"></a>样板代码设置</h2><p>复制代码文件到本地保存为 <strong>RevitApi.py</strong></p>
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> clr</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&#x27;C:\Program Files (x86)\IronPython 2.7\Lib&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> System</span><br><span class="line"><span class="keyword">from</span> System <span class="keyword">import</span> Array</span><br><span class="line"><span class="keyword">from</span> System.Collections.Generic <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&#x27;ProtoGeometry&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> Autodesk.DesignScript.Geometry <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitNodes&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> Revit</span><br><span class="line">clr.ImportExtensions(Revit.Elements)</span><br><span class="line">clr.ImportExtensions(Revit.GeometryConversion)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitServices&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> RevitServices</span><br><span class="line"><span class="keyword">from</span> RevitServices.Persistence <span class="keyword">import</span> DocumentManager</span><br><span class="line"><span class="keyword">from</span> RevitServices.Transactions <span class="keyword">import</span> TransactionManager</span><br><span class="line"></span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPI&quot;</span>)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPIUI&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Autodesk</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.DB <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.UI <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">doc = DocumentManager.Instance.CurrentDBDocument</span><br><span class="line">uiapp = DocumentManager.Instance.CurrentUIApplication</span><br><span class="line">app = uiapp.Application</span><br><span class="line">uidoc = uiapp.ActiveUIDocument</span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.EnsureInTransaction(doc) <span class="comment"># 事务开始</span></span><br><span class="line"><span class="comment">####### 逻辑代码 ########</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()    <span class="comment"># 事务结束</span></span><br><span class="line">OUT = doc</span><br></pre></td></tr></table></figure>
+<h2 id="Python-Script-样板文件"><a href="#Python-Script-样板文件" class="headerlink" title="Python Script 样板文件"></a>Python Script 样板文件</h2><p>Dynamo 2.0 开始,引入 Python 脚本模板。默认应用变量会自动添加到 <em>Python Script</em> 节点</p>
+<hr>
+<ul>
+<li>复制文件<strong>RevitBoilerplate.py</strong>到位置位于 Dynamo 安装的 <em>APPDATA</em> 位置。</li>
+</ul>
+<p>路径：<em>%appdata%\Dynamo\Dynamo Revit\{version}\</em></p>
+<p><img src=".//3.2.Setting.png" alt="Setting"></p>
+<ul>
+<li>修改文件<strong>DynamoSettings.xml</strong>中的 PythonTemplateFilePath 内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;PythonTemplateFilePath&gt;</span><br><span class="line">  C:\Users\&#123;USERNAME&#125;\AppData\Roaming\Dynamo\Dynamo Revit\&#123;version&#125;\RevitBoilerplate.py</span><br><span class="line">&lt;/PythonTemplateFilePath&gt;</span><br></pre></td></tr></table></figure>
+<p>完成上面的设置之后。就可以使用 Dynamo 愉快编写 python 脚本操控 Revit 软件！</p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>1.3 基本：输入和输出</title>
+    <url>/2021/02/08/PythonScriptPrimer/1.3%20%E5%9F%BA%E6%9C%AC%EF%BC%9A%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/</url>
+    <content><![CDATA[<h2 id="输入和输出"><a href="#输入和输出" class="headerlink" title="输入和输出"></a>输入和输出</h2><p><strong>IN</strong> 和 <strong>OUT</strong> 是 Dynamo 的 Python 节点中的重要关键字。<strong>IN</strong> 关键字告诉节点引用通过其输入发送到节点的任何数据。</p>
+<ul>
+<li>注意：后面所有的程序代码均运行在模板文件代码块内<a id="more"></a>
+
+</li>
+</ul>
+<p>通过它们的索引可以访问各种输入，例如下面的 list_of_numbers：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input_list_of_numbers = IN[<span class="number">0</span>] <span class="comment"># 获取外部节点输入</span></span><br><span class="line">output_list_of_numbers = []   <span class="comment"># 创建空列表作为输出的内容</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> input_list_of_numbers:</span><br><span class="line">    new_number = number + <span class="number">1</span></span><br><span class="line">    output_list_of_numbers.append(new_number)</span><br><span class="line"></span><br><span class="line">OUT = output_list_of_numbers <span class="comment"># 输出新的列表内容（传入的值每个数字均进行 +1 操作）</span></span><br></pre></td></tr></table></figure>
+<p>在此示例中，我们最初为输出创建一个空列表。我们遍历输入列表中的每个数字，并将其进行 +1 操作后添加到我们创建的输出列表中。最后，通过 <strong>OUT</strong> 关键字输出列表。</p>
+<p>实际上，它看起来像这样：</p>
+<p><img src=".//3.3.Code.png" alt="3.3截图代码"></p>
+<h2 id="输入和输出的类型"><a href="#输入和输出的类型" class="headerlink" title="输入和输出的类型"></a>输入和输出的类型</h2><p>Dynamo 节点可以将任何种类的数据作为输入，并可以输出任何种类的数据作为输出。</p>
+<p>它能够将元素（例如 Revit 元素），抽象数字，字符串，Dynamo 几何图形以及其他所有内容作为输入。</p>
+<p>但是，将 Revit 元素输入到 Python 节点时有一个警告。</p>
+<p>Revit 元素需要进行转换类型后，才能通过 API 进行访问。</p>
+<hr>
+<p><img src=".//3.3.Totype.jpg" alt="3.3类型转换"></p>
+<p>了解 <strong>Dynamo Revit</strong> 数据类型转换</p>
+]]></content>
+      <categories>
+        <category>dynamo</category>
+      </categories>
+      <tags>
+        <tag>dynamo</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+</search>

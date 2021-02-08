@@ -42,7 +42,7 @@
     
     <title>
         
-            1.1 Dynamo&#39;s Python编辑器 | 龙|Engineer|BIMer
+            category: dynamo | 龙|Engineer|BIMer
         
     </title>
     
@@ -106,12 +106,21 @@
     </v-list>
     <v-divider></v-divider>
     
-        <div class="post-toc">
-            <a href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/" class="toc-header">文章目录</a>
-            <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamo-%E7%9A%84-Python-%E8%84%9A%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">Dynamo 的 Python 脚本编辑器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.</span> <span class="toc-text">如何编写程序</span></a></li></ol>
-            </div>
-        </div>
+        <v-list id="sub-menu" class="font-weight-medium" dense>
+            
+                
+                    <v-list-item href="/categories/dynamo/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="3" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>dynamo</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
+        </v-list>    
     
 
     <div id="footer">
@@ -192,70 +201,31 @@
 </v-row>
 
                             <v-card class="elevation-2 post-card">
-    
-    
-        <div class="post-header">
-  <a class="post-header-title font-weight-medium" href="/2021/02/08/PythonScriptPrimer/1.1%20Dynamo's%20Python%E7%BC%96%E8%BE%91%E5%99%A8/">1.1 Dynamo&#39;s Python编辑器</a>
-  <div class="post-header-meta">   
-    <span>
-      <v-icon color="">event</v-icon>
-      发布于:&nbsp;2021-02-08
-    </span>
-    <span>
-      <v-icon color="">event_available</v-icon>
-      更新于:&nbsp;2021-02-08
-    </span>
-    <span>
-      <v-icon color="">folder</v-icon>
-      分类于:&nbsp;<a class="category-link" href="/categories/dynamo/">dynamo</a>
-    </span>
-    
-    <span>
-      <v-icon color="">visibility</v-icon>
-      阅读次数:&nbsp;<span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
-    </span>
-    
-  </div>
-</div>
-
-    
-    
-    
-    
+    <div class="post-header">
+        <a class="post-header-title font-weight-medium" href="/search/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE.html">1.2 样板代码设置</a>
+    </div>
     <div class="post-content typo">
-        <h2 id="Dynamo-的-Python-脚本编辑器"><a href="#Dynamo-的-Python-脚本编辑器" class="headerlink" title="Dynamo 的 Python 脚本编辑器"></a>Dynamo 的 Python 脚本编辑器</h2><p><em>Python</em> 脚本节点随 <em>Dynamo</em> 一起安装，并且在许多方面，它与任何其他节点一样：可以放置在工作空间中，重命名并可以接受任意数量的输入。</p>
+        
+            <h2 id="样板代码设置"><a href="#样板代码设置" class="headerlink" title="样板代码设置"></a>样板代码设置</h2><p>复制代码文件到本地保存为 <strong>RevitApi.py</strong></p>
 <a id="more"></a>
 
-<p>但是，与其他节点不同，如果右键单击并选择 <strong>Edit..</strong> 则会出现一个脚本编辑窗口(双击节点)，如下所示：</p>
-<p><img src=".//3.1.edit.png" alt="默认情况下Dynamo将使用上面的代码填充编辑器"></p>
-<p>在此窗口中，您可以编写 <strong>IronPython</strong> 脚本，这些脚本将作为 Dynamo 定义的一部分直接执行。要保存脚本，请单击 <strong>保存更改</strong> 按钮，然后保存其中的 Dynamo 定义。否则，请单击“取消”按钮以放弃所做的任何更改。</p>
-<h2 id="如何编写程序"><a href="#如何编写程序" class="headerlink" title="如何编写程序"></a>如何编写程序</h2><p>使用 <em>Dynamo</em> 编写 <em>Python</em> 代码！后面会学习设置样板代码，引用 <strong>Revit Api</strong>。</p>
-<p><a target="_blank" rel="noopener" href="https://primer.dynamobim.org/">dynamo 手册</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> clr</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path.append(<span class="string">&#x27;C:\Program Files (x86)\IronPython 2.7\Lib&#x27;</span>)</span><br><span class="line"><span class="keyword">import</span> System</span><br><span class="line"><span class="keyword">from</span> System <span class="keyword">import</span> Array</span><br><span class="line"><span class="keyword">from</span> System.Collections.Generic <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&#x27;ProtoGeometry&#x27;</span>)</span><br><span class="line"><span class="keyword">from</span> Autodesk.DesignScript.Geometry <span class="keyword">import</span> *</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitNodes&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> Revit</span><br><span class="line">clr.ImportExtensions(Revit.Elements)</span><br><span class="line">clr.ImportExtensions(Revit.GeometryConversion)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitServices&quot;</span>)</span><br><span class="line"><span class="keyword">import</span> RevitServices</span><br><span class="line"><span class="keyword">from</span> RevitServices.Persistence <span class="keyword">import</span> DocumentManager</span><br><span class="line"><span class="keyword">from</span> RevitServices.Transactions <span class="keyword">import</span> TransactionManager</span><br><span class="line"></span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPI&quot;</span>)</span><br><span class="line">clr.AddReference(<span class="string">&quot;RevitAPIUI&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Autodesk</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.DB <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Autodesk.Revit.UI <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">doc = DocumentManager.Instance.CurrentDBDocument</span><br><span class="line">uiapp = DocumentManager.Instance.CurrentUIApplication</span><br><span class="line">app = uiapp.Application</span><br><span class="line">uidoc = uiapp.ActiveUIDocument</span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.EnsureInTransaction(doc) <span class="comment"># 事务开始</span></span><br><span class="line"><span class="comment">####### 逻辑代码 ########</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">TransactionManager.Instance.TransactionTaskDone()    <span class="comment"># 事务结束</span></span><br><span class="line">OUT = doc</span><br></pre></td></tr></table></figure>
+<h2 id="Python-Script-样板文件"><a href="#Python-Script-样板文件" class="headerlink" title="Python Script 样板文件"></a>Python Script 样板文件</h2><p>Dynamo 2.0 开始,引入 Python 脚本模板。默认应用变量会自动添加到 <em>Python Script</em> 节点</p>
+<hr>
+<ul>
+<li>复制文件<strong>RevitBoilerplate.py</strong>到位置位于 Dynamo 安装的 <em>APPDATA</em> 位置。</li>
+</ul>
+<p>路径：<em>%appdata%\Dynamo\Dynamo Revit\{version}\</em></p>
+<p><img src=".//3.2.Setting.png" alt="Setting"></p>
+<ul>
+<li>修改文件<strong>DynamoSettings.xml</strong>中的 PythonTemplateFilePath 内容</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;PythonTemplateFilePath&gt;</span><br><span class="line">  C:\Users\&#123;USERNAME&#125;\AppData\Roaming\Dynamo\Dynamo Revit\&#123;version&#125;\RevitBoilerplate.py</span><br><span class="line">&lt;/PythonTemplateFilePath&gt;</span><br></pre></td></tr></table></figure>
+<p>完成上面的设置之后。就可以使用 Dynamo 愉快编写 python 脚本操控 Revit 软件！</p>
 
-    </div>
-    <!--文末结束语-->
-    
-        <div style="text-align:center;color: #ccc;font-size:24px;"> ---- 本文结束 <i class="fas fa-heart"></i> The End ---- </div>
-    
-    <!--页脚广告-->
-    
-    <v-divider></v-divider>
-    
-    <div class="post-nav">             
-        
-            <div class="post-nav-button float-left">
-                <v-icon>chevron_left</v-icon>
-                <a class="font-weight-bold text-left" href="/2021/02/08/PythonScriptPrimer/1.2%20%E6%A0%B7%E6%9D%BF%E4%BB%A3%E7%A0%81%E8%AE%BE%E7%BD%AE/">
-                    1.2 样板代码设置
-                </a>
-            </div>
-              
         
     </div>
 </v-card>
-
-
-
         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
@@ -285,12 +255,6 @@
 
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@0.0.1/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({
-        startOnLoad: true,
-        theme: "default"
-    });</script>
 
 
 
