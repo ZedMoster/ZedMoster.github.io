@@ -1,113 +1,182 @@
-/**
- * Sets up Justified Gallery.
- */
-if (!!$.prototype.justifiedGallery) {
-  var options = {
-    rowHeight: 140,
-    margins: 4,
-    lastRow: "justify"
-  };
-  $(".article-gallery").justifiedGallery(options);
-}
-
-$(document).ready(function() {
-
-  /**
-   * Shows the responsive navigation menu on mobile.
-   */
-  $("#header > #nav > ul > .icon").click(function() {
-    $("#header > #nav > ul").toggleClass("responsive");
-  });
-
-
-  /**
-   * Controls the different versions of  the menu in blog post articles 
-   * for Desktop, tablet and mobile.
-   */
-  if ($(".post").length) {
-    var menu = $("#menu");
-    var nav = $("#menu > #nav");
-    var menuIcon = $("#menu-icon, #menu-icon-tablet");
-
-    /**
-     * Display the menu on hi-res laptops and desktops.
-     */
-    if ($(document).width() >= 1440) {
-      menu.css("visibility", "visible");
-      menuIcon.addClass("active");
-    }
-
-    /**
-     * Display the menu if the menu icon is clicked.
-     */
-    menuIcon.click(function() {
-      if (menu.css("visibility") === "hidden") {
-        menu.css("visibility", "visible");
-        menuIcon.addClass("active");
-      } else {
-        menu.css("visibility", "hidden");
-        menuIcon.removeClass("active");
-      }
-      return false;
-    });
-
-    /**
-     * Add a scroll listener to the menu to hide/show the navigation links.
-     */
-    if (menu.length) {
-      $(window).on("scroll", function() {
-        var topDistance = menu.offset().top;
-
-        // hide only the navigation links on desktop
-        if (!nav.is(":visible") && topDistance < 50) {
-          nav.show();
-        } else if (nav.is(":visible") && topDistance > 100) {
-          nav.hide();
+var app = new Vue({
+    el: '#app',
+    vuetify: new Vuetify(),
+    data(){
+        return {
+            currentPage: 1,
+            nightMode: "wb_sunny",
+            menuHover: false,
+            tagHover: false,
+            commentTab: 0,
+            commentConfig: null,
+            commentFunction: {       
+                gitalk: ()=>{
+                    var gitalk = new Gitalk({
+                        clientID: this.commentConfig.gitalk_client_id,
+                        clientSecret: this.commentConfig.gitalk_client_secret,
+                        repo: this.commentConfig.gitalk_repo,
+                        owner: this.commentConfig.gitalk_owner,
+                        admin: [this.commentConfig.gitalk_owner],
+                        id:  md5(location.pathname) ,
+                        distractionFreeMode: this.commentConfig.gitalk_distractionFreeMode,
+                    });
+                    gitalk.render('gitalk-container');
+                },
+                valine: ()=>{
+                    var option = {
+                        el: '#vcomments',
+                        appId: this.commentConfig.valine_leancloud_app_id,
+                        appKey: this.commentConfig.valine_leancloud_app_key,
+                    };
+                    new Valine(Object.assign(option, this.commentConfig.valine_option));
+                },
+                changyan: ()=>{
+                    (function(){
+                        var appid = this.commentConfig.changyan_app_id;
+                        var conf = this.commentConfig.changyan_app_key;
+                        var width = window.innerWidth || document.documentElement.clientWidth;
+                        if (width < 960) {
+                            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+                        } 
+                    })(); 
+                },
+                disqus: ()=>{
+                    (function () {
+                        var d = document, s = d.createElement('script');
+                        s.src = '//'+this.commentConfig.disqus_shortname+'.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                },
+                livere: ()=>{
+                    (function (d, s) {
+                        var j, e = d.getElementsByTagName(s)[0];
+                        if (typeof LivereTower === 'function') { return; }
+                        j = d.createElement(s);
+                        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                        j.async = true;
+                        e.parentNode.insertBefore(j, e);
+                    })(document, 'script');
+                },
+            },
+            searchHeaderValue: null,
+            searchPageValue: null,
+            searchData: new Array(),
         }
+    },
 
-        // on tablet, hide the navigation icon as well and show a "scroll to top
-        // icon" instead
-        if ( ! $( "#menu-icon" ).is(":visible") && topDistance < 50 ) {
-          $("#menu-icon-tablet").show();
-          $("#top-icon-tablet").hide();
-        } else if (! $( "#menu-icon" ).is(":visible") && topDistance > 100) {
-          $("#menu-icon-tablet").hide();
-          $("#top-icon-tablet").show();
-        }
-      });
-    }
+    methods:{
+        PageChange: function(){
+            if(this.currentPage==1){
+                window.location.href = location.pathname.split("page/")[0];
+            }else{
+                window.location.href = location.pathname.split("page/")[0] +'page/' + this.currentPage + "/";
+            };
+        },
+        SetNightMode: function(){
+            if (this.$vuetify.theme.dark == true){
+                this.$vuetify.theme.dark = false;
+                localStorage.removeItem('insulin-dark');
+                this.nightMode = "wb_sunny";
+            }else{
+                this.$vuetify.theme.dark = true;
+                localStorage.setItem('insulin-dark', true);
+                this.nightMode = "brightness_2";
+            }
+        },
+        EnterSearch: function(varSearch,isLocal){
+            if(isLocal){
+                window.location.href = "/search/?" + encodeURI(varSearch); 
+            } else {
+                window.location.href = "https://www.google.com/search?q=" + encodeURI(varSearch) + " site:" + window.location.hostname;
+            };
+        },   
+        Search: function(varStr){
+            keywords=varStr.split(/\s+/);
+            var str="";
+            for (const data of this.searchData) {
+                var data_title = data.title;
+                var data_url = data.url;
+                var data_content = data.content.trim().replace(/<[^>]+>/g, '').toLowerCase();
+                var index_content = -1;
+                if (data_content !== '') {
+                for (const keyword of keywords) {
+                    if(index_content==-1){
+                    index_content = data_content.indexOf(keyword);
+                    }
+                };
+                };
+                if(index_content!=-1){
+                var start = index_content - 20;
+                var end = index_content + 80;
+                if(start < 0){start = 0;};
+                if(end > data_content.length){end = data_content.length;};
+                str += "<div class='search-post'><a class='search-post-title' href='" + data_url + "'>" + data_title + "</a><p class='search-post-content'>" + data_content.substr(start,end) + "</p><hr></div>";
+                };
+            };
+            for (const keyword of keywords) {
+                str=str.replace(eval('/'+keyword+'/g'),"<span class='search-post-bold'>" + keyword + "</span>")
+            };
+            if(str.length==0){
+                str="<div class='search-post'>暂无</div>";
+            };
+            document.getElementById("search-result").innerHTML=str;
+        },
+    },
 
-    /**
-     * Show mobile navigation menu after scrolling upwards,
-     * hide it again after scrolling downwards.
-     */
-    if ($( "#footer-post").length) {
-      var lastScrollTop = 0;
-      $(window).on("scroll", function() {
-        var topDistance = $(window).scrollTop();
-
-        if (topDistance > lastScrollTop){
-          // downscroll -> show menu
-          $("#footer-post").hide();
-        } else {
-          // upscroll -> hide menu
-          $("#footer-post").show();
-        }
-        lastScrollTop = topDistance;
-
-        // close all submenu"s on scroll
-        $("#nav-footer").hide();
-        $("#toc-footer").hide();
-        $("#share-footer").hide();
-
-        // show a "navigation" icon when close to the top of the page, 
-        // otherwise show a "scroll to the top" icon
-        if (topDistance < 50) {
-          $("#actions-footer > #top").hide();
-        } else if (topDistance > 100) {
-          $("#actions-footer > #top").show();
-        }
-      });
-    }
-  }
-});
+    mounted: function () {
+        //初始化currentPage
+        ((varpage)=>{
+            if(varpage){
+                this.currentPage = parseInt(varpage);
+            };
+        })(location.pathname.split("page/")[1]);
+        //初始化NightMode
+        ((isDark)=>{
+            if(isDark){
+                this.$vuetify.theme.dark = true;
+                this.nightMode = "brightness_2";
+            }
+        })(localStorage.getItem('insulin-dark'));
+        //搜索
+        ((path)=>{
+            if(path=='/search/'){
+                axios({
+                    methods:"GET",
+                    url: "/search.xml",
+                    responseType: 'document',
+                }).then(res=>{
+                    var xmlDoc = res.data.getElementsByTagName("entry");
+                    //初始化搜索
+                    for (const post of xmlDoc) {
+                        this.searchData.push({
+                        title: post.getElementsByTagName("title")[0].childNodes[0].nodeValue,
+                        content: post.getElementsByTagName("content")[0].childNodes[0].nodeValue,
+                        url: post.getElementsByTagName("url")[0].childNodes[0].nodeValue,
+                        });
+                    }
+                    //搜索
+                    this.searchPageValue=decodeURI(location.search.substr(1));
+                    this.Search(this.searchPageValue); 
+                }).catch(error=>{
+                    console.error(error);
+                });
+            }
+        })(location.pathname);
+        //初始化评论设置
+        ((el)=>{
+            if(el){
+                this.commentConfig = JSON.parse(Base64.decode(el.getAttribute("data")));
+                for (let e in this.commentConfig.use) {
+                    eval('this.commentFunction.' + this.commentConfig.use[e] + '();');
+                }
+            }
+        })(document.getElementById('tabs-content'));
+        //Google Adsense
+        (()=>{
+            for (let index = 0; index < document.getElementsByClassName('adsense-contain').length; index++) {
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            }
+        })();
+    },
+})

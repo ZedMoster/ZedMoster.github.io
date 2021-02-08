@@ -1,1 +1,0 @@
-xcopy /E D:\Git\ProBlog\public D:\Git\ZedMoster.github.io
