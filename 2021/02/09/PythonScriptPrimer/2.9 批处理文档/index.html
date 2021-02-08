@@ -109,7 +109,7 @@
         <div class="post-toc">
             <a href="/2021/02/09/PythonScriptPrimer/2.9%20%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E6%A1%A3/" class="toc-header">文章目录</a>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E8%8A%82%E7%82%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">python 节点代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamo-%E8%8A%82%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">dynamo 节点</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">工作流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python-%E8%8A%82%E7%82%B9%E4%BB%A3%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">python 节点代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamo-%E8%8A%82%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text">dynamo 节点</span></a></li></ol>
             </div>
         </div>
     
@@ -223,7 +223,9 @@
     
     
     <div class="post-content typo">
-        <h1 id><a href="#" class="headerlink" title></a></h1><p>批处理 Revit 文件 Revit API 的最强大功能之一就是能够以自动方式打开，关闭，编辑和保存文档。最重要的是，我们可以“无头”实现这一目标，这意味着无需任何 GUI 组件即可打开 Revit 文档的数据库。一般而言，以这种方式处理文档可能比用户这样做快 20 到 30 倍-这意味着构建涉及快速批处理许多文件时可以使用这种方式。</p>
+        <h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>批处理 Revit 文件 Revit API 的最强大功能之一就是能够以自动方式打开，关闭，编辑和保存文档。最重要的是，我们可以“无头”实现这一目标，这意味着无需任何 GUI 组件即可打开 Revit 文档的数据库。一般而言，以这种方式处理文档可能比用户这样做快 20 到 30 倍-这意味着构建涉及快速批处理许多文件时可以使用这种方式。</p>
+<a id="more"></a>
+
 <ul>
 <li><strong>批处理步骤</strong>：<ul>
 <li>根据目标文档的文件路径，创建 <strong>Revit FilePath</strong> 对象的列表，遍历此文档路径列表</li>

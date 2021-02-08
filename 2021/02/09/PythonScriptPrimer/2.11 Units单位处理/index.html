@@ -224,6 +224,8 @@
     
     <div class="post-content typo">
         <h2 id="Revit-长度"><a href="#Revit-长度" class="headerlink" title="Revit 长度"></a>Revit 长度</h2><p>Revit 长度内部单位：<strong>英尺</strong></p>
+<a id="more"></a>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">detail_line = UnwrapElement(IN[<span class="number">0</span>])</span><br><span class="line">decimal_feet_length = detail_line.GeometryCurve.Length</span><br><span class="line">OUT = decimal_feet_length  <span class="comment"># 单位：英尺</span></span><br></pre></td></tr></table></figure>
 <p>上面代码返回的数据单位并不是我们常用的毫米单位，所以需要对数据进行单位转换。</p>
 <h3 id="单位转换（毫米）"><a href="#单位转换（毫米）" class="headerlink" title="单位转换（毫米）"></a>单位转换（毫米）</h3><p>使用 Revit 的 <strong>UnitUtils</strong> 类，且参数只能从 Revit 的 <strong>DisplayUnitType</strong> 枚举中选择值类型</p>

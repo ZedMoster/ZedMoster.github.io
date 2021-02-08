@@ -309,7 +309,6 @@
       <div class="index-article-content">
         
           PydictionPydiction 可以使我们使用 Tab 键自动补全 Python 代码在 Vim，是一款非常不错的插件。不需要安装，所有没有任何依赖包问题。
-12345678910111213141516171819202122232425262728293031# 创建目录mkdir -p ~/.vim/bundle# 打开目录cd ~/.vim/bundle# 下载 Pydictiongit clone https://github.com/rkulla/pydiction.git# 复制文件到指定位置cp -r ~/.vim/bundle/pydiction/after/ ~...
         
       </div>
       
@@ -362,7 +361,7 @@
       
       <div class="index-article-content">
         
-          基本命令123456789101112131415161718192021222324# 进入需要管理的文件夹 -- 初始化命令git init# 查看目录下文件的状态git status# 管理指定文件git add 文件名# 管理目录下所有文件及文件夹git add .# 个人信息配置：用户名、邮箱 -- 仅配置一次即可git config --global user.email &quot;UserName@gmail.com&quot;git config --global user.name &quot;UserName&quot;# 设置代理git config --glob...
+          git 基本命令初始化命令、查看状态、管理文件、配置等
         
       </div>
       
@@ -410,9 +409,7 @@
       
       <div class="index-article-content">
         
-          安装 pip 或 pip31234# 安装python2 版本 pipsudo apt install python-pip# 安装python3 版本 pip3sudo apt install python3-pip
-仅使用 python3 时使用 pip 代替 pip31234567# 打开配置文件vim ~/.bashrc# 添加替换的内容alias pip=&quot;pip3&quot;alias python=&quot;python3&quot;# 保存后更新配置source ~/.bashrc
-更换 pip 源12345678910# 打开创建文件夹mkdir ~/.co...
+          安装 pip 或 pip3
         
       </div>
       
@@ -467,7 +464,6 @@ cd /etc/apt/
 sudo vim sources.list
 
 将系统自带的该文件做个备份，将该文件替换为下面内容，即可使用 TUNA 的软件源镜像。
-软件源镜像:18.04 LTS123456789# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ bioni...
         
       </div>
       
@@ -525,11 +521,6 @@ sudo vim sources.list
 打开系统，第一次打开等待安装完成后设置用户名及密码
 
 
-
-子系统 ubuntu vim 字体显示12345# 打开注册列表位置# 计算机\HKEY_CURRENT_USER\Console\# 选择 ubuntu 系统目录 右键 添加 &quot;DWORD（32 位）值&quot;# 添加 CodePage# 十进制值 65001
-
-Windows 的 ubuntu 子系统 VsCode 打开
-1.Visual Studio Code 安装插件 “Rem...
         
       </div>
       
@@ -578,12 +569,6 @@ Windows 的 ubuntu 子系统 VsCode 打开
       <div class="index-article-content">
         
           创建 TaskDialogTaskDialogs 是 Revit 中的用于提供详细的用户反馈 API 类。它们可以用一行代码执行，如下所示：
-1TaskDialog.Show(&quot;Example Title&quot;, &quot;Example Text&quot;)
-TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告脚本是成功运行还是遇到什么错误等情况。
-
-
-自定义 TaskDialogTaskDialog 也可以通过类的属性对其进行编辑，以使内容更加丰富，例如：
-1234567task_dialog = TaskDialog(&quot;Example ...
         
       </div>
       
@@ -632,9 +617,6 @@ TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告�
       <div class="index-article-content">
         
           BuiltInCategoryRevit 用户界面向用户显示了许多类别，例如门，楼板和常规模型等。Revit 在内部使用更详细的类别列表，称为内置类别。内置类别的完整列表可以在 BuiltInCategory 枚举中找到-这些是固定编码，不能创建修改。
-检索类别元素由于该列表涵盖了近 1000 个类别，因此可以帮助我门更精确地定位 Revit 元素。内置类别对于 FilteredElementCollectors 尤其有用，它使我们能够准确检索特定的元素。
-例如，要收集文档中的所有 面积标签 ：
-12area_tags = FilteredElementCollector(doc).Of...
         
       </div>
       
@@ -683,10 +665,6 @@ TaskDialogs 可用于向用户提供一定程度的反馈，可能时想报告�
       <div class="index-article-content">
         
           Revit 长度Revit 长度内部单位：英尺
-123detail_line = UnwrapElement(IN[0])decimal_feet_length = detail_line.GeometryCurve.LengthOUT = decimal_feet_length  # 单位：英尺
-上面代码返回的数据单位并不是我们常用的毫米单位，所以需要对数据进行单位转换。
-单位转换（毫米）使用 Revit 的 UnitUtils 类，且参数只能从 Revit 的 DisplayUnitType 枚举中选择值类型
-1234detail_line = UnwrapElement(IN[0]...
         
       </div>
       
@@ -785,13 +763,7 @@ ISelectionFilter 接口ISelectionFilter 可以限制用户可以选择的元素�
       
       <div class="index-article-content">
         
-          批处理 Revit 文件 Revit API 的最强大功能之一就是能够以自动方式打开，关闭，编辑和保存文档。最重要的是，我们可以“无头”实现这一目标，这意味着无需任何 GUI 组件即可打开 Revit 文档的数据库。一般而言，以这种方式处理文档可能比用户这样做快 20 到 30 倍-这意味着构建涉及快速批处理许多文件时可以使用这种方式。
-
-批处理步骤：
-根据目标文档的文件路径，创建 Revit FilePath 对象的列表，遍历此文档路径列表
-使用 Revit API 的 Open() 方法打开文件并为此打开的文档创建一个句柄
-通过其句柄打开针对我们新打开的文档的处理
-根据需求进行 AP...
+          工作流批处理 Revit 文件 Revit API 的最强大功能之一就是能够以自动方式打开，关闭，编辑和保存文档。最重要的是，我们可以“无头”实现这一目标，这意味着无需任何 GUI 组件即可打开 Revit 文档的数据库。一般而言，以这种方式处理文档可能比用户这样做快 20 到 30 倍-这意味着构建涉及快速批处理许多文件时可以使用这种方式。
         
       </div>
       

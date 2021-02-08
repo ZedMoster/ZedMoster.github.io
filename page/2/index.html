@@ -309,8 +309,6 @@
       <div class="index-article-content">
         
           Revit 是数据库需要对该数据库的更改进行仔细的排序，需要对过程进行管理和检查（针对架构的有效性以及针对 Revit API 设计的合法性）。所有这些都由 Revit 的本机 Transaction API 处理。
-Dynamo’s TransactionManager当直接为 Revit API 编码时，我们可以通过使用代码实例化 Transaction 类的新对象并调用其 Start() 方法来简单地启动新事务。但是，在 Dynamo 中，我们通常使用下面这种方式进行处理。
-TransactionManager 是 Dynamo API 的一部分，该 API 处理 Dynamo 应...
         
       </div>
       
@@ -363,12 +361,6 @@ TransactionManager 是 Dynamo API 的一部分，该 API 处理 Dynamo 应...
 族实例 是 Revit 的 FamilyInstance 类的实例。例如：项目中创建的门、窗
 族类型 是 Revit 的 FamilyType 类的实例。例如：防火门 FM1822 类型
 
-
-族实例参数通过 FamilyInstance 对象访问，而族类型的参数通过实例的 FamilyType 类型对象访问。
-
-包含关系：FamilyInstance -&gt; FamilyType -&gt; Family
-
-每个FamilyInstance都是通过FamilyType创建...
         
       </div>
       
@@ -417,16 +409,6 @@ TransactionManager 是 Dynamo API 的一部分，该 API 处理 Dynamo 应...
       <div class="index-article-content">
         
           Revit 几何图形和 Dynamo 几何图形Dynamo 具有与 Revit 并行的类库。意味着需要使用特殊的转换方法来使两者之间进行转换实现数据交互。前面章节也提到过需要展开对象。
-转换方式您可以使用 Dynamo API 的转换方法轻松地在 Dynamo 和 Revit 几何类型之间进行切换:
-
-ToProtoType()
-ToDSType()
-ToLine()
-ToPoint()
-ToVector()
-ToXyz()
-
-PointsRevit 点在 3D 空间中由其 X，Y 和 Z 坐标定义。创建方法：先创建点的对象 Autodesk.Revit.DB.XYZ，在创建 Revit...
         
       </div>
       
@@ -475,9 +457,6 @@ PointsRevit 点在 3D 空间中由其 X，Y 和 Z 坐标定义。创建方法：
       <div class="index-article-content">
         
           介绍处理模型的前提是获取到相应类型的元素。Revit 的 FilteredElementCollector 允许您使用一组自定义的过滤规则，在 Revit 文档的数据库中快速搜索元素。您可以将搜索过滤器和修饰符堆叠在一起，从而使您可以进行几乎无限次的自定义搜索。
-举个简单的例子FilteredElementCollectors 将返回 Element 或 ElementIds 的列表。
-快速组合在一起非常简单。例如：
-12345all_furniture = FilteredElementCollector(doc)             # 创建过滤器all_furniture.Of...
         
       </div>
       
@@ -683,8 +662,6 @@ Revit Platform API 中的顶级对象是应用程序和文档。这些由类 App
       <div class="index-article-content">
         
           Revit API 简介Revit 自 2000 年代初以来就具有可访问的 API，可用于驱动该软件的几乎每个方面。由于 Revit 应用程序非常复杂，并且满足多专业功能需求（建筑结构，MEP 等），因此它的 API 非常大且需要一段时间才能直观地理解也就不足为奇了。
-我经常发现最容易想到 Revit 主要是一个数据库，我们在使用该应用程序时会不断对其进行更新。数据库存储我们的内容（其元素 ID，类别，位置等）。在此之上是 GUI，它表示 3D 空间中元素的几何形状/位置，并让我们与元素进行交互。
-最后，还有一点网络魔术可以使我们跨局域网/ Revit Server / BIM360 设...
         
       </div>
       

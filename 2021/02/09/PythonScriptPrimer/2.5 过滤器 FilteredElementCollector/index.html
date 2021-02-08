@@ -224,6 +224,8 @@
     
     <div class="post-content typo">
         <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>处理模型的前提是获取到相应类型的元素。Revit 的 <strong>FilteredElementCollector</strong> 允许您使用一组自定义的过滤规则，在 Revit 文档的数据库中快速搜索元素。您可以将搜索过滤器和修饰符堆叠在一起，从而使您可以进行几乎无限次的自定义搜索。</p>
+<a id="more"></a>
+
 <h2 id="举个简单的例子"><a href="#举个简单的例子" class="headerlink" title="举个简单的例子"></a>举个简单的例子</h2><p><em>FilteredElementCollectors</em> 将返回 <em>Element</em> 或 <em>ElementIds</em> 的列表。</p>
 <p>快速组合在一起非常简单。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">all_furniture = FilteredElementCollector(doc)             <span class="comment"># 创建过滤器</span></span><br><span class="line">all_furniture.OfCategory(BuiltInCategory.OST_Furniture)   <span class="comment"># 过滤家具（包含：实例和类型）</span></span><br><span class="line">all_furniture.WhereElementIsNotElementType()              <span class="comment"># 过滤项目中家具实例</span></span><br><span class="line">all_furniture.ToElements()                                <span class="comment"># 结果转换为Element对象列表</span></span><br><span class="line">OUT = all_furniture                                       <span class="comment"># 输出对象</span></span><br></pre></td></tr></table></figure>
