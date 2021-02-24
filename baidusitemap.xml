@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zedmoster.github.io/2021/02/23/0.learn_pandas/Pandas%20%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/</loc>
+    <lastmod>2021-02-24</lastmod>
+  </url>
+  <url>
+    <loc>https://zedmoster.github.io/2021/02/23/1.python/%E5%B9%B4%E8%96%AA50W+%E7%9A%84Python%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E5%86%99%E4%BB%A3%E7%A0%81/</loc>
+    <lastmod>2021-02-24</lastmod>
+  </url>
+  <url>
+    <loc>https://zedmoster.github.io/2021/02/23/0.learn_FFmpeg/ffmpeg%20%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</loc>
+    <lastmod>2021-02-24</lastmod>
+  </url>
+  <url>
     <loc>https://zedmoster.github.io/2021/02/09/PythonScriptPrimer/2.4%20%E5%B1%95%E5%BC%80Revit%E5%85%83%E7%B4%A0/</loc>
     <lastmod>2021-02-08</lastmod>
   </url>

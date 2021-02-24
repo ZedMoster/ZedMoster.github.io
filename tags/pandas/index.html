@@ -39,24 +39,10 @@
     
     
     
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    
     
     <title>
-        
-            tags | 龙|Engineer|BIMer
+          
+            龙|Engineer|BIMer
         
     </title>
     
@@ -250,123 +236,29 @@
   </v-col>
 </v-row>
 
-                            <v-card class="elevation-2 post-card">
-    <div class="post-header">
-        <a class="post-header-title font-weight-medium" href="/tags/index.html">标签</a>
-    </div>
-    <div class="post-content typo">
+                            <v-card class="elevation-2 index-card">
+    <v-timeline class="timeline" dense>
+        <v-timeline-item class="timeline-header" color="secondary lighten-2">
+            <span class="timeline-title">pandas</span>
+            <span class="timeline-subtitle">标签</span>
+        </v-timeline-item>
         
-            <div class="page-describe">
-                counter.tags
-            </div>
-            <div class="tags-contain">
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="1" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/ffmpeg/">ffmpeg</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="5" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/linux/">linux</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="5" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/Shell/">Shell</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="1" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/git/">git</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="16" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/dynamo/">dynamo</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="18" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/python/">python</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-                    <v-badge :value="tagHover" transition="slide-x-transition" inline content="1" >
-                        <v-hover v-model="tagHover">
-                            <v-chip color="secondary" class="tags-chip font-weight-medium">
-                                <a href="/tags/pandas/">pandas</a>
-                            </v-chip>
-                        </v-hover>
-                    </v-badge>
-                
-            </div>
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.23</span>
+                    <a href="/2021/02/23/0.learn_pandas/Pandas%20%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">十分钟入门 Pandas</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.23</span><br>
+                    <a href="/2021/02/23/0.learn_pandas/Pandas%20%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">十分钟入门 Pandas</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
         
-    </div>
+    </v-timeline>
 </v-card>
 
-    <v-card class="comment-card elevation-2">
-        <v-tabs v-model="commentTab"  id="comment-tabs" active-class="active-comment-tab">
-            
-                <v-tab><span id="comment-tab-0">d</span></v-tab>
-            
-                <v-tab><span id="comment-tab-1">i</span></v-tab>
-            
-                <v-tab><span id="comment-tab-2">s</span></v-tab>
-            
-                <v-tab><span id="comment-tab-3">q</span></v-tab>
-            
-                <v-tab><span id="comment-tab-4">u</span></v-tab>
-            
-                <v-tab><span id="comment-tab-5">s</span></v-tab>
-            
-        </v-tabs>
-        <v-tabs-items v-model="commentTab" id="tabs-content" data=eyJ1c2UiOiJkaXNxdXMiLCJkaXNxdXNfc2hvcnRuYW1lIjoiemVkbW9zdGVyIn0= >
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-                <v-tab-item eager=true>
-                    
-                </v-tab-item>
-            
-        </v-tabs-items>
-    </v-card>
-        
+         
                             <div id="mobile-footer" class="d-block d-md-none">
                                 <v-divider></v-divider>
                                 <div id="mobile-footer-content">

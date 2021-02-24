@@ -109,6 +109,18 @@
         <v-list id="sub-menu" class="font-weight-medium" dense>
             
                 
+                    <v-list-item href="/categories/ffmpeg/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="1" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>ffmpeg</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
+                
                     <v-list-item href="/categories/linux/" link>
                         <v-badge :value="menuHover" transition="slide-y-transition" inline content="5" >
                             <v-hover v-model="menuHover">
@@ -126,6 +138,18 @@
                             <v-hover v-model="menuHover">
                                 <v-list-item-content>
                                     <span>dynamo</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
+                
+                    <v-list-item href="/categories/python/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="2" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>python</span>                              
                                 </v-list-item-content>                           
                             </v-hover>
                         </v-badge>
@@ -226,6 +250,48 @@
             
             <v-timeline-item fill-dot small color="secondary lighten-2">
                 <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.23</span>
+                    <a href="/2021/02/23/0.learn_pandas/Pandas%20%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">十分钟入门 Pandas</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.23</span><br>
+                    <a href="/2021/02/23/0.learn_pandas/Pandas%20%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">十分钟入门 Pandas</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
+        
+            
+            
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.23</span>
+                    <a href="/2021/02/23/0.learn_FFmpeg/ffmpeg%20%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">ffmpeg 操作手册</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.23</span><br>
+                    <a href="/2021/02/23/0.learn_FFmpeg/ffmpeg%20%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/" class="timeline-item-title">ffmpeg 操作手册</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
+        
+            
+            
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
+                    <span class="timeline-item-time">2021.02.23</span>
+                    <a href="/2021/02/23/1.python/%E5%B9%B4%E8%96%AA50W+%E7%9A%84Python%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E5%86%99%E4%BB%A3%E7%A0%81/" class="timeline-item-title">年薪50W+的Python程序员如何写代码</a>
+                </div>
+                <div class="timeline-item-post-mobile d-block d-md-none">
+                    <span class="timeline-item-time">2021.02.23</span><br>
+                    <a href="/2021/02/23/1.python/%E5%B9%B4%E8%96%AA50W+%E7%9A%84Python%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E5%86%99%E4%BB%A3%E7%A0%81/" class="timeline-item-title">年薪50W+的Python程序员如何写代码</a>
+                </div>
+                <v-divider></v-divider>
+            </v-timeline-item>
+        
+            
+            
+            <v-timeline-item fill-dot small color="secondary lighten-2">
+                <div class="timeline-item-post d-none d-md-block">
                     <span class="timeline-item-time">2021.02.09</span>
                     <a href="/2021/02/09/LinuxPrimer/05.git%E4%BD%BF%E7%94%A8/" class="timeline-item-title">05.git 使用</a>
                 </div>
@@ -316,48 +382,6 @@
                 <div class="timeline-item-post-mobile d-block d-md-none">
                     <span class="timeline-item-time">2021.02.09</span><br>
                     <a href="/2021/02/09/PythonScriptPrimer/2.12%20%E5%86%85%E7%BD%AE%E7%B1%BB%E5%88%AB/" class="timeline-item-title">2.12 内置类别</a>
-                </div>
-                <v-divider></v-divider>
-            </v-timeline-item>
-        
-            
-            
-            <v-timeline-item fill-dot small color="secondary lighten-2">
-                <div class="timeline-item-post d-none d-md-block">
-                    <span class="timeline-item-time">2021.02.09</span>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.11%20Units%E5%8D%95%E4%BD%8D%E5%A4%84%E7%90%86/" class="timeline-item-title">2.11 Units 单位处理</a>
-                </div>
-                <div class="timeline-item-post-mobile d-block d-md-none">
-                    <span class="timeline-item-time">2021.02.09</span><br>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.11%20Units%E5%8D%95%E4%BD%8D%E5%A4%84%E7%90%86/" class="timeline-item-title">2.11 Units 单位处理</a>
-                </div>
-                <v-divider></v-divider>
-            </v-timeline-item>
-        
-            
-            
-            <v-timeline-item fill-dot small color="secondary lighten-2">
-                <div class="timeline-item-post d-none d-md-block">
-                    <span class="timeline-item-time">2021.02.09</span>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.10%20%E6%8F%90%E7%A4%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E9%80%89%E6%8B%A9/" class="timeline-item-title">2.10 提示用户界面选择</a>
-                </div>
-                <div class="timeline-item-post-mobile d-block d-md-none">
-                    <span class="timeline-item-time">2021.02.09</span><br>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.10%20%E6%8F%90%E7%A4%BA%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E9%80%89%E6%8B%A9/" class="timeline-item-title">2.10 提示用户界面选择</a>
-                </div>
-                <v-divider></v-divider>
-            </v-timeline-item>
-        
-            
-            
-            <v-timeline-item fill-dot small color="secondary lighten-2">
-                <div class="timeline-item-post d-none d-md-block">
-                    <span class="timeline-item-time">2021.02.09</span>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.9%20%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E6%A1%A3/" class="timeline-item-title">2.9 批处理文档</a>
-                </div>
-                <div class="timeline-item-post-mobile d-block d-md-none">
-                    <span class="timeline-item-time">2021.02.09</span><br>
-                    <a href="/2021/02/09/PythonScriptPrimer/2.9%20%E6%89%B9%E5%A4%84%E7%90%86%E6%96%87%E6%A1%A3/" class="timeline-item-title">2.9 批处理文档</a>
                 </div>
                 <v-divider></v-divider>
             </v-timeline-item>
